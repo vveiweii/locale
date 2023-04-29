@@ -7,7 +7,6 @@ class CreateServices < ActiveRecord::Migration[7.0]
       t.text :description
       t.text :offer
       t.text :available
-      t.references :cart, null: false, foreign_key: true
 
       t.timestamps
     end
