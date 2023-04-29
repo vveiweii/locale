@@ -10,6 +10,34 @@
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
 
+    <%= f.input :name,
+                as: :string,
+                hint: "leave it blank if you don't want to change it",
+                required: false,
+                input_html: { autocomplete: "name" } %>
+    <%= f.input :address,
+                as: :string,
+                hint: "leave it blank if you don't want to change it",
+                required: false,
+                input_html: { autocomplete: "street address" } %>
+    <%= f.input :city,
+                as: :string,
+                hint: "leave it blank if you don't want to change it",
+                required: false,
+                input_html: { autocomplete: "city" } %>
+    <%= f.input :state,
+                as: :string,
+                hint: "leave it blank if you don't want to change it",
+                required: false,
+                input_html: { autocomplete: "state" } %>
+    <%= f.input :postcode,
+                as: :integer,
+                hint: "leave it blank if you don't want to change it",
+                required: false %>
+    <%= f.input :date_of_birth,
+                as: :date, start_year: Date.today.year - 90,
+                           end_year: Date.today.year - 12,
+                           order: [:day, :month, :year] %>
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
                 required: false,
