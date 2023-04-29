@@ -33,11 +33,10 @@ class BookingsController < ApplicationController
     redirect_to request.referer
   end
 
-
   private
 
   def booking_params
-    params.require(:booking).permit(:startdate, :enddate)
+    params.require(:booking).permit(:startdate, :enddate, :status)
   end
 
 end
