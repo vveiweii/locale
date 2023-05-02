@@ -8,3 +8,26 @@
 <%= button_to "logout", destroy_user_session_path, method: :delete  %>
 
 <%= link_to 'Sign in', new_user_session_path %>
+
+<div class="search-sec">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="row justify-content-start">
+          <div class="col-lg-6 col-md-3 col-sm-6 p-0">
+            <%=  form_with url: business_path, method: :get, class: "d-flex" do %>
+              <%= text_field_tag :query,
+                    params[:query],
+                    class: "form-control search-slt",
+                    placeholder: "Search for a service..."
+              %>
+          <%# </div>
+          <div class="col-lg-3 col-md-3 col-sm-6 p-0"> %>
+              <%= submit_tag "SEARCH", name: "", class: "btn btn-success wrn-btn" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

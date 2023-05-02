@@ -1,7 +1,12 @@
 class BusinessController < ApplicationController
 
   def index
-    @businesses = Business.all
+    if params[:query].present?
+      @business = Business.global_search(params[:query])
+
+    else
+     # @services = Service.all
+      @businesses = Business.all
   end
 
   def new
@@ -36,6 +41,10 @@ class BusinessController < ApplicationController
     business.destroy
     redirect_to businesses_path
   end
+
+  def search
+  end
+
 
   private
 
