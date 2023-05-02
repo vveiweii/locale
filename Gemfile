@@ -78,3 +78,5 @@ end
 
 gem "devise"
 gem "pg_search"
+
+gem 'bootstrap', '~> 5.1'
