@@ -1,6 +1,6 @@
 class Service < ApplicationRecord
   belongs_to :business
-  belongs_to :cart
+  # belongs_to :cart
 
   validates :name, presence: true
   validates :price, presence: true, numericality: { greater_than: 0 }
