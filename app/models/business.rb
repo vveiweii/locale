@@ -6,4 +6,14 @@ class Business < ApplicationRecord
   validates :description, presence: true, length: { maximum: 500 }
 
   has_many :services, dependent: :destroy
+
+  include PgSearch::model
+  pg_search_scope :global_search, against: :name, :description
+  associated_against: {
+    service: %i[name description]
+  },
+  using: {
+    tsearch: {prefix: true
+    }
+  }
 end

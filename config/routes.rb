@@ -15,6 +15,6 @@ Rails.application.routes.draw do
   resources :businesses, only: %i[index show] do
     resources :services, only: [:index]
   end
-
+  
   # resource :booking_confirmation, only: [:show]
 end
