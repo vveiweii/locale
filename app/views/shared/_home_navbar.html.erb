@@ -8,19 +8,6 @@
     </div>
     <% end %>
 
-    <% if controller_name != "pages" && action_name != "home" %>
-      <div class="form-inline">
-        <%=  form_with url: businesses_path, method: :get, class: "d-flex" do
-                  <%# <%= text_field_tag :query, %>
-                        <%# params[:query],
-                        class: "form-control search-slt",
-                        placeholder: "Search for a service..."
-                  %>
-                  <%= submit_tag "Search", name: "", class: "btn btn-secondary wrn-btn" %>
-        <% end %>
-      </div>
-    <% end %>
-
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -35,15 +22,13 @@
               <%= link_to "Home", root_path, class: "nav-link" %>
             </li>
             <li class="nav-item dropdown">
-              <a class="btn btn-secondary btn-floating dropdown-toggle hidden-arrow"
-                      type="button"
-                      id="dropdownMenuicon"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false">
-                Menu
-              </a>
-              <%# <img class="avatar dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://kitt.lewagon.com/placeholder/users/ssaunier" /> %>
-              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown dropdownMenuicon">
+              <img class="avatar dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://kitt.lewagon.com/placeholder/users/ssaunier" />
+              <%# <% if current_user.photo.attached? %>
+                <%# <%= cl_image_tag current_user.photo.key, class: "avatar-bordered dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <%# <% else %>
+                <%# <img class="avatar dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://kitt.lewagon.com/placeholder/users/ssaunier" />
+              <% end %>
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <%= link_to "Dashboard", edit_user_registration_path, class: "dropdown-item" %>
                 <%= link_to "Profile", edit_user_registration_path, class: "dropdown-item" %>
                 <%= link_to "Bookings", edit_user_registration_path, class: "dropdown-item" %>
