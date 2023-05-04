@@ -1,58 +1,49 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<div class="navbar navbar-expand-lg navbar-light navbar-lewagon">
   <div class="container-fluid">
-
-    <%= link_to root_path, class: "navbar-brand me-auto" do %>
-    <div class="align-items-center">
-      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" />
-      <span class="mx-3">LOCALE</span>
-    </div>
-    <% end %>
+    <a class="navbar-brand" href="#">Locale</a>
 
     <% if controller_name != "pages" && action_name != "home" %>
       <div class="form-inline">
         <%=  form_with url: businesses_path, method: :get, class: "d-flex" do
-                  <%# <%= text_field_tag :query, %>
-                        <%# params[:query],
-                        class: "form-control search-slt",
-                        placeholder: "Search for a service..."
-                  %>
-                  <%= submit_tag "Search", name: "", class: "btn btn-secondary wrn-btn" %>
+          <%= text_field_tag :query, %>
+            <% params[:query],
+            class: "form-control search-slt",
+            placeholder: "Search for a service..."
+            %>
+          <%= submit_tag "Search", name: "", class: "btn btn-secondary wrn-btn" %>
         <% end %>
       </div>
     <% end %>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <%# <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-    </button>
+    </button> %>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
-          <% if user_signed_in? %>
-            <li class="nav-item">
-              <%= link_to "Hello #{current_user.name.split[0]}  |", "#", class: "nav-link" %>
-            </li>
-            <li class="nav-item active">
-              <%= link_to "Home", root_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="btn btn-secondary btn-floating dropdown-toggle hidden-arrow"
-                      type="button"
-                      id="dropdownMenuicon"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false">
-                Menu
-              </a>
-              <%# <img class="avatar dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://kitt.lewagon.com/placeholder/users/ssaunier" /> %>
-              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown dropdownMenuicon">
-                <%= link_to "Dashboard", edit_user_registration_path, class: "dropdown-item" %>
-                <%= link_to "Profile", edit_user_registration_path, class: "dropdown-item" %>
-                <%= link_to "Bookings", edit_user_registration_path, class: "dropdown-item" %>
-                <%= link_to "Favourites", edit_user_registration_path, class: "dropdown-item" %>
-
-                <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-              </div>
-            </li>
-              <% else %>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav mx-auto gap-2">
+        <li class="nav-item active">
+          <%= link_to "Home", root_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link btn btn-outline-success rounded-pill" href="#">For your Business</a>
+        </li>
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "Hello #{current_user.name.split[0]}  |", "#", class: "nav-link" %>
+          </li>
+          <li class="nav-item dropdown-center">
+            <button class="nav-link dropdown-toggle btn btn-outline-success rounded-pill" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img class="avatar" src="https://kitt.lewagon.com/placeholder/users/ssaunier" />
+              Menu
+            </button>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown dropdownMenuicon">
+              <%= link_to "Profile", edit_user_registration_path, class: "dropdown-item" %>
+              <%= link_to "Bookings", edit_user_registration_path, class: "dropdown-item" %>
+              <%= link_to "Favourites", edit_user_registration_path, class: "dropdown-item" %>
+              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+            </div>
+          </li>
+        <% else %>
           <li class="nav-item">
             <%= link_to "Login", new_user_session_path, class: "nav-link" %>
           </li>

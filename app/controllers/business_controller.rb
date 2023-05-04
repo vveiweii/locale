@@ -3,21 +3,22 @@ class BusinessController < ApplicationController
 
   def index
     if params[:query].present?
-      @business = Business.global_search(params[:query])
-
+      @businesses = Business.global_search(params[:query])
     else
-     # @services = Service.all
       @businesses = Business.all
+    end
   end
 
   def new
-    @business = Business.new
+    @user = current_user
+    @business = @user.business.new
   end
 
   def create
-    @business = Business.new(business_params)
+    @user = current_user
+    @business = @user.business.new(business_params)
     if @business.save
-      redirect_to @business
+      redirect_to @business, notice: "Business created successfully!"
     else
       render :new
     end
@@ -27,25 +28,24 @@ class BusinessController < ApplicationController
     # set_business
   end
 
-  def edit
-    # set_business
-  end
-
   def update
     # set_business
-    business.update(business_params)
-    redirect_to business
+    if @business.update(business_params)
+      redirect_to @business, notice: "Business updated successfully!"
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @user = current_user
     # set_business
     business.destroy
-    redirect_to businesses_path
+    redirect_to @user, notice: "Business deleted successfully!"
   end
 
   def search
   end
-
 
   private
 

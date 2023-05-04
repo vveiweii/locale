@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  # before_action :authenticate_user!, :configure_permitted_parameters, if: :devise_controller?, except: [:home, :about, :index, :show]
+  before_action :authenticate_user!, only: %i[new create], if: -> { params[:business_id].present? }
   # before_action :configure_permitted_parameters, if: :devise_controller?
   protect_from_forgery with: :exception
 
