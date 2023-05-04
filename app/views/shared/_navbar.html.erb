@@ -4,13 +4,13 @@
 
     <% if controller_name != "pages" && action_name != "home" %>
       <div class="form-inline">
-        <%=  form_with url: businesses_path, method: :get, class: "d-flex" do
-          <%= text_field_tag :query, %>
-            <% params[:query],
-            class: "form-control search-slt",
-            placeholder: "Search for a service..."
-            %>
-          <%= submit_tag "Search", name: "", class: "btn btn-secondary wrn-btn" %>
+       <%=  form_with url: businesses_path, method: :get, class: "d-flex" do %>
+          <%= text_field_tag :query,
+                params[:query],
+                class: "form-control search-slt",
+                placeholder: "Search for a service..."
+          %>
+          <%= submit_tag "SEARCH", name: "", class: "btn btn-success wrn-btn" %>
         <% end %>
       </div>
     <% end %>
@@ -21,6 +21,9 @@
 
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav mx-auto gap-2">
+        <li class="nav-item">
+          <%= link_to "Hello #{current_user.name.split[0]}  |", "#", class: "nav-link" %>
+        </li>
         <li class="nav-item active">
           <%= link_to "Home", root_path, class: "nav-link" %>
         </li>
@@ -28,9 +31,6 @@
           <a class="nav-link btn btn-outline-success rounded-pill" href="#">For your Business</a>
         </li>
         <% if user_signed_in? %>
-          <li class="nav-item">
-            <%= link_to "Hello #{current_user.name.split[0]}  |", "#", class: "nav-link" %>
-          </li>
           <li class="nav-item dropdown-center">
             <button class="nav-link dropdown-toggle btn btn-outline-success rounded-pill" type="button" data-bs-toggle="dropdown" aria-expanded="false">
               <img class="avatar" src="https://kitt.lewagon.com/placeholder/users/ssaunier" />
@@ -45,7 +45,7 @@
           </li>
         <% else %>
           <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+            <%= link_to "Login", new_user_session_path, class: "nav-link btn btn-outline-success rounded-pill" %>
           </li>
         <% end %>
       </ul>
