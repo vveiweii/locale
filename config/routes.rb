@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   root to: "pages#home"
-  get 'dashboard', to: 'pages#userdashboard'
+  get 'dashboard/index'
 
   namespace :users do
     resource :profile, only: %i[show edit update destroy]
@@ -15,6 +15,6 @@ Rails.application.routes.draw do
   resources :businesses, only: %i[index show] do
     resources :services, only: [:index]
   end
-  
+
   # resource :booking_confirmation, only: [:show]
 end
