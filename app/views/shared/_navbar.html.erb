@@ -21,9 +21,6 @@
 
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav mx-auto gap-2">
-        <li class="nav-item">
-          <%= link_to "Hello #{current_user.name.split[0]}  |", "#", class: "nav-link" %>
-        </li>
         <li class="nav-item active">
           <%= link_to "Home", root_path, class: "nav-link" %>
         </li>
@@ -36,6 +33,9 @@
               <img class="avatar" src="https://kitt.lewagon.com/placeholder/users/ssaunier" />
               Menu
             </button>
+            <%# <li class="nav-item">
+              <%= link_to "Hello #{current_user.name.split[0]}  |", "#", class: "nav-link" %>
+            <%# </li> %> %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown dropdownMenuicon">
               <%= link_to "Profile", edit_user_registration_path, class: "dropdown-item" %>
               <%= link_to "Bookings", edit_user_registration_path, class: "dropdown-item" %>
