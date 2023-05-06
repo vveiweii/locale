@@ -1,20 +1,16 @@
-<div class="container py-5 text-center">
-  <h3 class="mb-4">Search results</h3>
-  <div class="row">
-    <% if @businesses.any? %>
-      <% @businesses.each do |business| %>
-        <div class="col-md-4 mb-3">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title"><%= business.name %></h5>
-              <p class="card-text"><%= business.description %></p>
-              <%= link_to "View Details", business_path(business), class: "btn btn-primary" %>
-            </div>
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <h3 class="mb-4">Search results</h3>
+    <div class="row mb-3">
+      <% if @businesses.any? %>
+        <% @businesses.each do |business| %>
+          <div class="col-md-4 mb-3">
+            <%= render "businesses/business_card", business: business %>
           </div>
-        </div>
+        <% end %>
+      <% else %>
+        <h5>Sorry, no businesses found.</h5>
       <% end %>
-    <% else %>
-      <h5>Sorry, no businesses found.</h5>
-    <% end %>
+    </div>
   </div>
 </div>
