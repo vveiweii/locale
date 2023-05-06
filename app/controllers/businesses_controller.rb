@@ -1,4 +1,4 @@
-class BusinessController < ApplicationController
+class BusinessesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 
   def index
@@ -50,7 +50,7 @@ class BusinessController < ApplicationController
   private
 
   def business_params
-    params.require(:business).permit(:name, :email, :address, :city, :state, :postcode, :available, :user_id)
+    params.require(:business).permit(:name, :email, :address, :city, :state, :postcode, :available, :user_id, :description)
   end
 
   def set_business

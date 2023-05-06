@@ -10,8 +10,7 @@ class Business < ApplicationRecord
   include PgSearch::Model
   pg_search_scope :global_search,
                   against: %i[name description],
-                  associated_against: {
-                    service: %i[name description]
-                  },
-                  using: { tsearch: { prefix: true } }
+                  associated_against: { service: %i[name description] },
+                  using: { tsearch: {prefix: true}
+                  };
 end
