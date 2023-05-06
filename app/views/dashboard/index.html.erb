@@ -1,2 +1,17 @@
-<h1>Dashboard#index</h1>
-<p>Find me in app/views/dashboard/index.html.erb</p>
+<h1>User Dashboard</h1>
+
+<div class="card">
+  <div class="card-body">
+    <h3>User Profile</h3>
+    <p><strong>Name:</strong> <%= current_user.name %></p>
+    <p><strong>Email:</strong> <%= current_user.email %></p>
+    <p><strong>Address:</strong> <%= current_user.address %></p>
+    <p><strong>City:</strong> <%= current_user.city %></p>
+    <p><strong>State:</strong> <%= current_user.state %></p>
+    <p><strong>Postcode:</strong> <%= current_user.postcode %></p>
+    <p><strong>Date of Birth:</strong> <%= current_user.date_of_birth %></p>
+    <%= button_to 'Edit Profile', edit_user_registration_path, method: :get, class: 'btn btn-primary' %>
+  </div>
+</div>
+
+<%= render 'edit_profile' %>

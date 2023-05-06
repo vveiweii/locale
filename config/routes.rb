@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
 
-  resource :dashboard, only: %i[index update destroy]
+  resources :dashboard, only: %i[index update destroy]
 
   resources :users do
     resources :bookings
