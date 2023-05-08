@@ -1,7 +1,9 @@
 <div class="navbar navbar-expand-lg navbar-light navbar-lewagon">
   <div class="container-fluid">
-    <%= link_to "Locale", root_path, class: "navbar-brand" %>
-
+    <div class="d-flex align-items-center">
+      <i class="fa-regular fa-bookmark fa-xl mx-2" style="color: #72d578;"> </i>
+      <%= link_to "Locale", root_path, class: "navbar-brand" %>
+    </div>
     <% if controller_name != "pages" && action_name != "home" %>
       <div class="form-inline">
        <%=  form_with url: businesses_path, method: :get, class: "d-flex" do %>

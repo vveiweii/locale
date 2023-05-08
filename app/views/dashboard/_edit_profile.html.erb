@@ -13,7 +13,11 @@
           <%= f.input :city %>
           <%= f.input :state %>
           <%= f.input :postcode %>
-          <%= f.input :date_of_birth %>
+          <%= f.input :date_of_birth,
+                      start_year: Date.today.year - 90,
+                      end_year: Date.today.year,
+                      order: [:day, :month, :year]
+          %>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
