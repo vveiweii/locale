@@ -3,6 +3,8 @@ class BusinessesController < ApplicationController
 
   def index
     if params[:query].present?
+      # @businesses = Business.global_search(params[:query])
+      # @businesses = Business.search(params[:query])
       @businesses = Business.global_search(params[:query])
     else
       @businesses = Business.all
@@ -25,7 +27,6 @@ class BusinessesController < ApplicationController
   end
 
   def show
-    # set_business
     @business = Business.find(params[:id])
     @services = @business.services
   end

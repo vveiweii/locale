@@ -3,17 +3,19 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
 
-  resource :dashboard, only: %i[index update destroy]
+  resources :dashboard, only: %i[index update destroy]
 
-  resources :users do
-    resources :bookings
-    resources :businesses do
-      resources :services
+  resources :users, only: %i[edit update destroy] do
+    resources :bookings, only: %i[new create edit update destroy]
+    resources :businesses, only: %i[new create edit update destroy] do
+      resources :services, only: %i[new create edit update destroy]
     end
   end
 
+  resources :bookings, only: %i[index show]
+
   resources :businesses, only: %i[index show] do
-    resources :services, only: [:index]
+    resources :services, only: %i[index]
   end
 
   # resource :booking_confirmation, only: [:show]
