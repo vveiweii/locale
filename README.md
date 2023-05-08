@@ -1,1 +1,11 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+# Locale
+
+## Booking webapp focused in bringing locals and business together with great offer. Closer you are, better the deal
+
+### >> STACK
+
+- HTML/CSS
+- Ruby on Rails
+- Bootstrap
+- Devise (Authentication)
+- PostgreSQL
