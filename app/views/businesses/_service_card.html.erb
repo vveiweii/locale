@@ -1,0 +1,11 @@
+<div class="container mt-3">
+  <% @services.each do |service| %>
+    <div>
+      <div class="service-card p-3 mb-3">
+        <h5><%= service.name %></h5>
+        <p><%= service.description %></p>
+        <h6>AUD <%= service.price %></h6>
+      </div>
+    </div>
+  <% end %>
+</div>
