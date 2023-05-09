@@ -35,3 +35,11 @@
     }, 1000);
   </script>
 </div>
+
+<div class="row">
+  <% Business.newest.each_with_index do |business, index| %>
+    <div class="col-md-2">
+      <%= render 'businesses/business_card', business: business %>
+    </div>
+  <% end %>
+</div>
