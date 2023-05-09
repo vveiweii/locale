@@ -19,8 +19,21 @@
         </div>
       </div>
     </div>
+
+    <div>
+      <b><h2 id="booking-count"></h2></b>
+    </div>
   </div>
 
+  <script>
+    const bookingCountElem = document.getElementById("booking-count");
+    let bookingCount = 1050;
+
+    setInterval(() => {
+      bookingCount += 13;
+      bookingCountElem.innerText = `${bookingCount.toString()} appointments booked today`;
+    }, 1000);
+  </script>
 </div>
 
 <div class="row">

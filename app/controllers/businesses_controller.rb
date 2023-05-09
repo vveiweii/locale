@@ -3,8 +3,6 @@ class BusinessesController < ApplicationController
 
   def index
     if params[:query].present?
-      # @businesses = Business.global_search(params[:query])
-      # @businesses = Business.search(params[:query])
       @businesses = Business.global_search(params[:query])
     else
       @businesses = Business.all
@@ -17,13 +15,11 @@ class BusinessesController < ApplicationController
 
 
   def new
-    @user = current_user
-    @business = @user.business.new
+    @business = current_user.businesses.new
   end
 
   def create
-    @user = current_user
-    @business = @user.business.new(business_params)
+    @business = current_user.businesses.new(business_params)
     if @business.save
       redirect_to @business, notice: "Business created successfully!"
     else
@@ -37,7 +33,6 @@ class BusinessesController < ApplicationController
   end
 
   def update
-    # set_business
     if @business.update(business_params)
       redirect_to @business, notice: "Business updated successfully!"
     else
@@ -47,21 +42,13 @@ class BusinessesController < ApplicationController
 
   def destroy
     @user = current_user
-    # set_business
     business.destroy
     redirect_to @user, notice: "Business deleted successfully!"
-  end
-
-  def search
   end
 
   private
 
   def business_params
-    params.require(:business).permit(:name, :email, :address, :city, :state, :postcode, :available, :user_id, :description)
-  end
-
-  def set_business
-    @business = Business.find(params[:id])
+    params.require(:business).permit(:name, :email, :address, :city, :state, :postcode, :available, :description)
   end
 end
