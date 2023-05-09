@@ -1,7 +1,9 @@
 <div class="navbar navbar-expand-lg navbar-light navbar-lewagon">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Locale</a>
-
+    <div class="d-flex align-items-center">
+      <i class="fa-regular fa-bookmark fa-xl mx-2" style="color: #72d578;"> </i>
+      <%= link_to "Locale", root_path, class: "navbar-brand" %>
+    </div>
     <% if controller_name != "pages" && action_name != "home" %>
       <div class="form-inline">
        <%=  form_with url: businesses_path, method: :get, class: "d-flex" do %>
@@ -33,12 +35,9 @@
               <img class="avatar" src="https://kitt.lewagon.com/placeholder/users/ssaunier" />
               Menu
             </button>
-            <%# <li class="nav-item">
-              <%= link_to "Hello #{current_user.name.split[0]}  |", "#", class: "nav-link" %>
-            <%# </li> %> %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown dropdownMenuicon">
               <%= link_to "Hello #{current_user.name.split[0]} ", "#", class: "nav-link" %>
-              <%= link_to "Profile", edit_user_registration_path, class: "dropdown-item" %>
+              <%= link_to "Profile", dashboard_index_path, class: "dropdown-item" %>
               <%= link_to "Bookings", edit_user_registration_path, class: "dropdown-item" %>
               <%= link_to "Favourites", edit_user_registration_path, class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>

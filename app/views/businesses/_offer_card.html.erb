@@ -1,0 +1,12 @@
+<div class="container all-card mt-3">
+  <% @services.each do |service| %>
+    <div class="offer-card p-3 mb-3 slide-content">
+      <div class="each-card swiper-wrapper">
+        <h5><%= service.name %></h5>
+        <p><%= service.description %></p>
+        <p><%= service.offer %></p>
+        <h6>AUD <%= service.price %></h6>
+      </div>
+    </div>
+  <% end %>
+</div>
