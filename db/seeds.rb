@@ -45,6 +45,7 @@ Business.all.each do |business|
     business.services.create(
       name: Faker::Commerce.product_name,
       price: Faker::Commerce.price(range: 50.0..300.0),
+      offer: 0,
       description: Faker::Commerce.product_name,
       available: 'yes'
     )
@@ -52,7 +53,8 @@ Business.all.each do |business|
   3.times do
     business.services.create(
       name: Faker::Commerce.product_name,
-      offer: Faker::Commerce.price(range: 50.0..300.0),
+      price: Faker::Commerce.price(range: 150.0..300.0),
+      offer: Faker::Commerce.price(range: 50.0..100.0),
       description: Faker::Commerce.product_name,
       available: 'yes'
     )
