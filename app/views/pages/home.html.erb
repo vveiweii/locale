@@ -23,8 +23,10 @@
 
 </div>
 
-<div class="newest-businesses">
-  <% @businesses.each do |business| %>
-    <%= render partial: 'business_card', locals: { business: business } %>
+<div class="row">
+  <% Business.newest.each_with_index do |business, index| %>
+    <div class="col-md-2">
+      <%= render 'businesses/business_card', business: business %>
+    </div>
   <% end %>
 </div>

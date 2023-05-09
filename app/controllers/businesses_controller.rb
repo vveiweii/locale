@@ -11,6 +11,11 @@ class BusinessesController < ApplicationController
     end
   end
 
+  def newest
+      @businesses = Business.order(created_at: :desc).limit(5).where(available: 'yes')
+  end
+
+
   def new
     @user = current_user
     @business = @user.business.new
