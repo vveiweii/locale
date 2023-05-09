@@ -6,6 +6,8 @@ class Business < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 }
   validates :description, presence: true, length: { maximum: 500 }
 
+  scope :newest, -> { order(created_at: :desc) }
+
   include PgSearch::Model
   pg_search_scope :global_search,
     against: [:name, :description],
