@@ -2,11 +2,12 @@
   <div class="row">
 
     <div class="col-5">
-      <div class="card">
+      <div class="card mb-4">
         <div class="card-body">
           <div class="d-flex justify-content-between">
             <h3>User Profile</h3>
             <%= link_to "Edit Profile", "#", remote: true, data: { bs_toggle: "modal", bs_target: "#editProfileModal" }, class: "btn btn-success" %>
+            <%= render 'edit_profile' %>
           </div>
           <span><strong>Name:</strong></span>
           <p><%= current_user.name %></p>
@@ -24,7 +25,15 @@
           <p><%= current_user.date_of_birth.strftime('%d %B %Y') %></p>
         </div>
       </div>
-      <%= render 'edit_profile' %>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h4>My Bookings</h4>
+          <span>View your booking history</span>
+          <hr>
+          <%# render a partial with the past booking history %>
+          <p> No booking history </p>
+        </div>
+      </div>
     </div>
 
     <div class="col-7">
