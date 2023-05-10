@@ -5,23 +5,27 @@ class BookingsController < ApplicationController
 
   def new
     @user = User.find(params[:user_id])
-    @booking = @user.bookings.new(user_id: current_user.id)
+    @booking = @user.bookings.new
   end
 
-  # def new
-  #   @booking = current_user.bookings.build
-  # end
-
+  # rubocop:disable Metrics/MethodLength
   def create
     @booking = Booking.new(booking_params)
-    @booking.user = User.find(params[:user_id])
-    @booking.user = current_user
+
+    @current_cart.line_items.each do |item|
+      @booking.line_items << item
+      item.cart_id = nil
+    end
+
     if @booking.save
-      redirect_to user_path(current_user), notice: "Booking was successfully created."
+      Cart.destroy(session[:cart_id])
+      session[:cart_id] = nil
+      redirect_to root_path, notice: "Booking was successfully created."
     else
       render :new, status: :unprocessable_entity, notice: "Something went wrong."
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
   def show
     @booking = Booking.find(params[:id])
@@ -38,5 +42,4 @@ class BookingsController < ApplicationController
   def booking_params
     params.require(:booking).permit(:startdate, :enddate, :status)
   end
-
 end
