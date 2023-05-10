@@ -1,36 +1,40 @@
 <div class="container my-4">
-  <div>
-      <ul class="list-inline">
-        <li><%= link_to "Home", root_path %></li>
-        <li>∙ <%= @business.city %></li>
-        <li>∙ <%= link_to @business.name , business_path(@business) %></li>
-      </ul>
-  </div>
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
+      <li class="breadcrumb-item"><%= @business.city %></li>
+      <li class="breadcrumb-item active" aria-current="page"><%= @business.name %></li>
+    </ol>
+  </nav>
 
   <h1><%= @business.name %></h1>
 
-  <div class="business-details">
-    <ul class="list-inline">
-      <li>★ review score</li>
-      <li>review path here</li>
-      <li><%= if @business.available? then "Available for booking" end %></li>
-      <li><%= @business.address %></li>
-      <li><%= @business.city %></li>
-      <li><%= @business.state %></li>
-      <li><%= @business.postcode %></li>
-    </ul>
-  </div>
-
+  <nav style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">review score</li>
+      <li class="breadcrumb-item">review path</li>
+      <li class="breadcrumb-item"><%= if @business.available? then "Available for booking" end %></li>
+      <li class="breadcrumb-item"><%= @business.address %></li>
+      <li class="breadcrumb-item"><%= @business.city %></li>
+      <li class="breadcrumb-item"><%= @business.state %></li>
+      <li class="breadcrumb-item"><%= @business.postcode %></li>
+    </ol>
+  </nav>
 
   <div class="container py-3">
-    <div class="row">
-      <div class="col-md-8 slide-container swiper">
-        <h3>Offers</h3>
-        <%= render "offer_card", business: @business %>
-
-        <%# <div class="swiper-button-next swiper-navBtn"></div>
-        <div class="swiper-button-prev swiper-navBtn"></div>
-        <div class="swiper-pagination"></div> %>
+    <div class="row swiper-container"
+         data-controller="carousel">
+      <h3>Offers</h3>
+      <div class="col-md-8">
+        <div class="container all-card mt-3 swiper-wrapper">
+          <%= render "offer_card", business: @business %>
+        </div>
+        <%# <!-- Pagination (... or 1/10 or progress bar) -->
+        <div class="swiper-pagination"></div>
+        <!-- Navigation buttons (< >) -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div> %>
       </div>
     </div>
   </div>

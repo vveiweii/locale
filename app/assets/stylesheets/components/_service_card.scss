@@ -1,12 +1,15 @@
 .service-card {
-   position: relative;
    display: flex;
    flex-direction: column;
    min-width: none;
-   word-wrap: break-word;
    background-color: white;
    background-clip: border-box;
    border: 1px solid rgba(0,0,0,.125);
    border-radius: 0.25rem;
    padding: 5px;
+}
+
+.service-add-button {
+  position: relative;
+  width: 100px;
 }
