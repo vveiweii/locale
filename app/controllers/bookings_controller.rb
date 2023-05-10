@@ -14,7 +14,7 @@ class BookingsController < ApplicationController
 
     @current_cart.line_items.each do |item|
       @booking.line_items << item
-      item.cart_id = nil
+      item.update(cart_id: nil)
     end
 
     if @booking.save
