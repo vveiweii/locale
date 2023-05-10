@@ -14,6 +14,14 @@ class ServicesController < ApplicationController
     redirect_to business_path(@service.business)
   end
 
+  def edit
+
+  end
+
+  def update
+
+  end
+
   def destroy
     @service = Service.find(params[:id])
     @service.destroy
