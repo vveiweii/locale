@@ -27,6 +27,11 @@
           <%= link_to "Home", root_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
+          <%= link_to cart_path(@current_cart), class: "nav-link btn btn-outline-success rounded-pill" do %>
+            Cart (<%= @cart.line_items.sum(:quantity).to_i %>)
+          <% end %>
+        </li>
+        <li class="nav-item">
           <a class="nav-link btn btn-outline-success rounded-pill" href="#">For your Business</a>
         </li>
         <% if user_signed_in? %>

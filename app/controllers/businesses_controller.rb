@@ -1,5 +1,5 @@
 class BusinessesController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     if params[:query].present?
@@ -8,11 +8,6 @@ class BusinessesController < ApplicationController
       @businesses = Business.all
     end
   end
-
-  def newest
-      @businesses = Business.order(created_at: :desc).limit(5).where(available: 'yes')
-  end
-
 
   def new
     @business = current_user.businesses.new
@@ -30,6 +25,7 @@ class BusinessesController < ApplicationController
   def show
     @business = Business.find(params[:id])
     @services = @business.services
+    @cart = @current_cart
   end
 
   def update

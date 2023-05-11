@@ -22,7 +22,11 @@
           <span><strong>Postcode:</strong></span>
           <p><%= current_user.postcode %></p>
           <span><strong>Date of Birth:</strong></span>
-          <p><%= current_user.date_of_birth.strftime('%d %B %Y') %></p>
+          <% if current_user.date_of_birth.present? %>
+            <p><%= current_user.date_of_birth.strftime('%d %B %Y') %></p>
+          <% else %>
+            <p>No date of birth available</p>
+          <% end %>
         </div>
       </div>
       <div class="card mb-4">
