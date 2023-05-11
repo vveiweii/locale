@@ -1,5 +1,7 @@
 require 'faker'
 
+postcodes = ['3002', '8002', '3000', '3001', '3004', '8001', '3045', '3052', '5006', '3051', '3207', '3050', '3205', '3004', '3010', '3003']
+
 p "Starting seed"
 p "Destroying all users"
 User.destroy_all
@@ -16,7 +18,6 @@ User.create!(
 )
 p "Master user created"
 
-postcodes = ['3002', '8002', '3000', '3001', '3004', '8001', '3045', '3052', '5006', '3051', '3207', '3050', '3205', '3004', '3010', '3003']
 puts "Creating regular users"
 10.times do
   User.create(
