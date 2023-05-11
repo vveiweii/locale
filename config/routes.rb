@@ -27,5 +27,5 @@ Rails.application.routes.draw do
   get 'line_items/:id' => "line_items#show", as: "line_item"
   delete 'line_items/:id' => "line_items#destroy"
 
-  # resource :booking_confirmation, only: [:show]
+  resource :booking_confirmation, only: [:show]
 end
