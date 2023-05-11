@@ -1,53 +1,64 @@
-<div class="container my-4">
+<div class="container my-3">
 
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
-      <li class="breadcrumb-item"><%= @business.city %></li>
-      <li class="breadcrumb-item active" aria-current="page"><%= @business.name %></li>
-    </ol>
+  <nav style="--bs-breadcrumb-divider: ' • ';" aria-label="breadcrumb">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
+        <li class="breadcrumb-item"><%= @business.city %></li>
+        <li class="breadcrumb-item active" aria-current="page"><%= @business.name %></li>
+      </ol>
+    </nav>
   </nav>
 
   <h1><%= @business.name %></h1>
 
-  <nav style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb">
+  <nav style="--bs-breadcrumb-divider: ' • ';" aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item">review score</li>
+      <li class="breadcrumb-item">review stars</li>
       <li class="breadcrumb-item">review path</li>
       <li class="breadcrumb-item"><%= if @business.available? then "Available for booking" end %></li>
       <li class="breadcrumb-item"><%= @business.address %></li>
       <li class="breadcrumb-item"><%= @business.city %></li>
       <li class="breadcrumb-item"><%= @business.state %></li>
-      <li class="breadcrumb-item"><%= @business.postcode %></li>
+      <li class="breadcrumb-item">Get Directions</li>
+      <%# FAVOURITE ICON %>
     </ol>
   </nav>
 
-  <div class="container py-3">
-    <div class="row swiper-container"
-         data-controller="carousel">
-      <h3>Offers</h3>
-      <div class="col-md-8">
-        <div class="container all-card mt-3 swiper-wrapper">
-          <%= render "offer_card", business: @business %>
-        </div>
-      </div>
+  <%# PICTURES %>
+
+  <%# Offers %>
+  <div class="col-12 my-5">
+    <h2>Offers</h2>
+    <div class="row mt-3">
+      <% @services.each do |service| %>
+        <% if service.offer > 0 %>
+          <div class="col-md-3">
+            <%= render "offer_card", service: service %>
+          </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 
-  <div class="container py-3">
-    <div class="row">
-      <div class="col-md-8">
-        <h3>Services</h3>
-          <%= render "service_card", business: @business %>
-        </div>
-      </div>
+  <%# All Services %>
+  <div class="col-12 my-5">
+    <div class="col-8">
+      <h2>Services</h2>
+      <% @services.each do |service| %>
+        <%= render "service_card", service: service %>
+      <% end %>
+    </div>
+    <div class="col-4">
+      <%# <%= render "carts/show" %>
     </div>
   </div>
 
+  <%# About the business %>
   <div class="container py-3">
     <div class="row">
       <div class="col-md-8">
-        <h3>About</h3>
+        <h2>About</h2>
         <h5><%= @business.description %></h5>
       </div>
     </div>
