@@ -25,6 +25,7 @@ class BusinessesController < ApplicationController
   def show
     @business = Business.find(params[:id])
     @services = @business.services
+    @cart = @current_cart
   end
 
   def update

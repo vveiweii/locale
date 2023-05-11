@@ -1,10 +1,11 @@
-<% @services.each do |service| %>
-    <div class="offer-card p-3 mb-3">
-      <div class="swiper-slide">
-        <h5><%= service.name %></h5>
-        <p><%= service.description %></p>
-        <p><%= service.offer %></p>
-        <h6>AUD <%= service.price %></h6>
-      </div>
+<div class="card mb-4 border rounded shadow-sm">
+    <div class="card-body">
+        <b><%= service.name %></b>
+        <p><span class="small"><%= service.description %></span></p>
+        <p><b>Offer:</b> AUD <%= service.offer %></p>
+        <p><b>Original:</b> AUD <del><%= service.price %></del></p>
+        <%= button_to line_items_path(service_id: service.id), class: "btn btn-success btn-sm" do %>
+          <i class="fa-solid fa-plus fa-lg"></i>
+        <% end %>
     </div>
-<% end %>
+</div>
