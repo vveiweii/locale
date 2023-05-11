@@ -6,8 +6,4 @@ class LineItem < ApplicationRecord
   def total_price
     self.quantity * self.service.price
   end
-
-  def taxes
-    self.service.price * 0.1
-  end
 end

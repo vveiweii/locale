@@ -6,6 +6,7 @@ class BookingsController < ApplicationController
   def new
     @user = User.find(params[:user_id])
     @booking = @user.bookings.new
+    @cart = @current_cart
   end
 
   # rubocop:disable Metrics/MethodLength

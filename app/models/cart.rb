@@ -9,4 +9,8 @@ class Cart < ApplicationRecord
     end
     return sum
   end
+
+  def taxes
+    sub_total * 0.1
+  end
 end
