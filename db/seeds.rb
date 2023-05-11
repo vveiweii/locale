@@ -6,8 +6,9 @@ User.destroy_all
 
 p "creating master user test@test.com with password 123456"
 User.create!(
-  name: 'Master',
+  name: 'Master User',
   email: 'test@test.com',
+  address: Faker::Address.street_address,
   password: '123456',
   city: 'Melbourne',
   state: 'VIC',
@@ -15,13 +16,17 @@ User.create!(
 )
 p "Master user created"
 
+postcodes = ['3002', '8002', '3000', '3001', '3004', '8001', '3045', '3052', '5006', '3051', '3207', '3050', '3205', '3004', '3010', '3003']
 puts "Creating regular users"
 10.times do
   User.create(
     name: Faker::Name.name,
     email: Faker::Internet.email,
+    address: Faker::Address.street_address,
     password: '123456',
-    city: Faker::Address.city
+    city: 'Melbourne',
+    state: 'VIC',
+    postcode: postcodes.sample
   )
 end
 p "Regular users created"
@@ -31,8 +36,10 @@ User.all.sample(10).each do |user|
   user.businesses.create(
     name: Faker::Company.name,
     email: Faker::Internet.email,
-    address: Faker::Address.full_address,
-    city: Faker::Address.city,
+    address: Faker::Address.street_address,
+    city: 'Melbourne',
+    state: 'VIC',
+    postcode: postcodes.sample,
     description: Faker::Company.industry,
     available: 'yes'
   )
