@@ -4,7 +4,7 @@ class LineItemsController < ApplicationController
     chosen_product = Service.find(params[:service_id])
     current_cart = @current_cart
 
-    if current_cart.products.include?(chosen_product)
+    if current_cart.services.include?(chosen_product)
       @line_item = current_cart.line_items.find_by(service_id: chosen_product)
       @line_item.quantity += 1
     else
@@ -13,7 +13,7 @@ class LineItemsController < ApplicationController
       @line_item.service = chosen_product
     end
     @line_item.save
-    redirect_to cart_path(current_cart)
+    redirect_to request.referer
   end
 
   def add_quantity
