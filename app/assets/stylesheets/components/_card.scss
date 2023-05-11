@@ -1,0 +1,22 @@
+.card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-link:hover {
+  border-color: lightgrey;
+}
+
+.card-title {
+  padding: 2px;
+}
+
+.card-text {
+  padding: 2px;
+}
+
+.custom-badge {
+  background-color: rgb(67, 70, 66);
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: inherit;
+}
