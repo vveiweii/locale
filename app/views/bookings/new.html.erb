@@ -9,7 +9,7 @@
     </div>
     <div class="form-group my-5">
       <h4>Cart Items</h4>
-      <% @cart.line_items.each do |item| %>
+      <% @current_cart.line_items.each do |item| %>
         <div class="cart-item">
           <p><%= item.service.name %> - AUD <%= item.service.price %></p>
         </div>
