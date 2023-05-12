@@ -2,7 +2,7 @@ class BookingsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @bookings = current_user.bookings
+    @bookings = current_user.bookings.all
     @cart = @current_cart
   end
 
