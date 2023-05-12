@@ -1,0 +1,12 @@
+<div class="container">
+  <h2>My Bookings</h2>
+  <% @bookings.each do |booking| %>
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Booking ID: <%= booking.id %></h5>
+        <p class="card-text">Start Date: <%= booking.start_date %></p>
+        <%# <%= link_to "View Details", booking_path(booking), class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>
