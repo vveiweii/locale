@@ -4,7 +4,14 @@
     <div class="card mb-3">
       <div class="card-body">
         <h5 class="card-title">Booking ID: <%= booking.id %></h5>
-        <p class="card-text">Start Date: <%= booking.start_date %></p>
+        <p class="card-text">Date: <%= booking.start_date %></p>
+        <p>Line Items: </p>
+        <ul>
+          <% booking.line_items.each do |item| %>
+          <li><%= item.service.name %></li>
+          <% end %>
+        </ul>
+        <%= button_to "Cancel Booking", booking_path(booking), method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}}, class: "btn btn-primary" %>
         <%# <%= link_to "View Details", booking_path(booking), class: "btn btn-primary" %>
       </div>
     </div>
