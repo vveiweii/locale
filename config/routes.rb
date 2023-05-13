@@ -28,4 +28,8 @@ Rails.application.routes.draw do
   delete 'line_items/:id' => "line_items#destroy"
 
   resource :booking_confirmation, only: [:show]
+
+  # route related to the for your business page
+
+  get 'for-your-business', to: 'pages#for_your_business', as: 'for_your_business'
 end
