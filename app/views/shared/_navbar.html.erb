@@ -31,9 +31,14 @@
             Cart (<%= @current_cart.line_items.sum(:quantity).to_i %>)
           <% end %>
         </li>
-        <li class="nav-item">
+        <%# <li class="nav-item">
           <a class="nav-link btn btn-outline-success rounded-pill" href="#">For your Business</a>
-        </li>
+          <%= link_to 'For Your Business', for_your_business_path %>
+
+      <li class="nav-item">
+      <%= link_to 'For Your Business', for_your_business_path, class: 'nav-link btn btn-outline-success rounded-pill' %>
+      </li>
+
         <% if user_signed_in? %>
           <li class="nav-item dropdown-center">
             <button class="nav-link dropdown-toggle btn btn-outline-success rounded-pill" type="button" data-bs-toggle="dropdown" aria-expanded="false">
