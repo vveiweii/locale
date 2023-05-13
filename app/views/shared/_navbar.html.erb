@@ -37,7 +37,11 @@
         <% if user_signed_in? %>
           <li class="nav-item dropdown-center">
             <button class="nav-link dropdown-toggle btn btn-outline-success rounded-pill" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <img class="avatar" src="https://kitt.lewagon.com/placeholder/users/ssaunier" />
+              <% if current_user.photo.attached? %>
+                <%= cl_image_tag current_user.photo.key, height: 25, width: 25, aspect_ratio: "1:1", crop: :fill, class: "avatar" %>
+              <% else %>
+                <%= cl_image_tag("development/slg3qy5k2ajvju12ktnimzrw9vct.jpg", :aspect_ratio=>"1:1", :border=>"0px_solid_rgb:ffffff", :radius=>"max", :width=>25, :crop=>"thumb") %>
+              <% end %>
               Menu
             </button>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown dropdownMenuicon">
