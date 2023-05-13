@@ -2,7 +2,7 @@ class BookingsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @bookings = current_user.bookings
+    @bookings = current_user.bookings.all
     @cart = @current_cart
   end
 
@@ -14,24 +14,21 @@ class BookingsController < ApplicationController
   # rubocop:disable Metrics/MethodLength
   def create
     @booking = Booking.new(booking_params)
+    @booking.user_id = current_user.id
     @current_cart.line_items.each do |item|
       @booking.line_items << item
-      # item.update(cart_id: nil)
-      item.cart_id = nil
+      item.update(cart_id: nil)
+      # item.cart_id = nil
+      # item.save
     end
 
-    @booking.save
-    Cart.destroy(session[:cart_id])
-    session[:cart_id] = nil
-    redirect_to root_path
-
-    # if @booking.save
-    #   Cart.destroy(session[:cart_id])
-    #   session[:cart_id] = nil
-    #   redirect_to root_path, notice: "Booking was successfully created."
-    # else
-    #   render :new, status: :unprocessable_entity, notice: "Something went wrong."
-    # end
+    if @booking.save
+      Cart.destroy(session[:cart_id])
+      session[:cart_id] = nil
+      redirect_to root_path, notice: "Booking was successfully created."
+    else
+      render :new, status: :unprocessable_entity, notice: "Something went wrong."
+    end
   end
   # rubocop:enable Metrics/MethodLength
 
@@ -48,6 +45,6 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date, :user_id)
+    params.require(:booking).permit(:start_date, :user_id)
   end
 end
