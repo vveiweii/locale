@@ -44,14 +44,17 @@
       <div class="card mb-4">
         <div class="card-body">
           <div class="d-flex justify-content-between">
-            <h4>My Businesses</h4> <%= link_to "Add a Business", root_path, class: "btn btn-success" %></div>
-            <span> Make your Business available for Booking </span>
-            <hr>
+            <h4>My Businesses</h4>
+            <%= link_to "Add a Business", "#", remote: true, data: { bs_toggle: "modal", bs_target: "#newBusinessModal" }, class: "btn btn-success" %>
+            <%= render 'new_business' %>
           </div>
-            <div class="d-flex justify-content-start mx-3">
+          <p> Make your Business available for Booking </p>
+          <hr>
+          <div class="d-flex justify-content-start">
             <% @businesses.each do |business| %>
               <%= render "business_card", business: business %>
             <% end %>
+          </div>
         </div>
       </div>
       <div class="card mb-4">

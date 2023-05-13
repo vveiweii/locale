@@ -10,15 +10,16 @@ class BusinessesController < ApplicationController
   end
 
   def new
-    @business = current_user.businesses.new
+    @business = Business.new
   end
 
   def create
-    @business = current_user.businesses.new(business_params)
+    @business = Business.new(business_params)
+    @business.user = current_user
     if @business.save
-      redirect_to @business, notice: "Business created successfully!"
+      redirect_to dashboard_index_path, notice: 'Your business was added successfully.'
     else
-      render :new
+      redirect_to dashboard_index_path, notice: 'Your business was not added.'
     end
   end
 
@@ -45,6 +46,6 @@ class BusinessesController < ApplicationController
   private
 
   def business_params
-    params.require(:business).permit(:name, :email, :address, :city, :state, :postcode, :available, :description)
+    params.require(:business).permit(:name, :email, :address, :city, :state, :postcode, :available, :description, :user_id)
   end
 end
