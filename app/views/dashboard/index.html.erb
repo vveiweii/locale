@@ -43,6 +43,19 @@
     <div class="col-7">
       <div class="card mb-4">
         <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <h4>My Businesses</h4> <%= link_to "Add a Business", root_path, class: "btn btn-success" %></div>
+            <span> Make your Business available for Booking </span>
+            <hr>
+          </div>
+            <div class="d-flex justify-content-start mx-3">
+            <% @businesses.each do |business| %>
+              <%= render "business_card", business: business %>
+            <% end %>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
           <h4>My payment Methods</h4>
           <span> Securely save your payment methods</span>
           <hr>
