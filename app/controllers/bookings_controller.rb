@@ -1,21 +1,25 @@
 class BookingsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    @bookings = Booking.all
+    @bookings = current_user.bookings.all
+    @cart = @current_cart
   end
 
   def new
-    @user = User.find(params[:user_id])
-    @booking = @user.bookings.new
+    @booking = Booking.new
     @cart = @current_cart
   end
 
   # rubocop:disable Metrics/MethodLength
   def create
     @booking = Booking.new(booking_params)
-
+    @booking.user_id = current_user.id
     @current_cart.line_items.each do |item|
       @booking.line_items << item
       item.update(cart_id: nil)
+      # item.cart_id = nil
+      # item.save
     end
 
     if @booking.save
@@ -41,6 +45,6 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:startdate, :enddate, :status)
+    params.require(:booking).permit(:start_date, :user_id)
   end
 end

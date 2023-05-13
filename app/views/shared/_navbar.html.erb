@@ -28,7 +28,7 @@
         </li>
         <li class="nav-item">
           <%= link_to cart_path(@current_cart), class: "nav-link btn btn-outline-success rounded-pill" do %>
-            Cart (<%= @cart.line_items.sum(:quantity).to_i %>)
+            Cart (<%= @current_cart.line_items.sum(:quantity).to_i %>)
           <% end %>
         </li>
         <%# <li class="nav-item">
@@ -48,7 +48,7 @@
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown dropdownMenuicon">
               <%= link_to "Hello #{current_user.name.split[0]} ", "#", class: "nav-link" %>
               <%= link_to "Profile", dashboard_index_path, class: "dropdown-item" %>
-              <%= link_to "Bookings", edit_user_registration_path, class: "dropdown-item" %>
+              <%= link_to "Bookings", bookings_path, class: "dropdown-item" %>
               <%= link_to "Favourites", edit_user_registration_path, class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
