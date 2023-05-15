@@ -19,7 +19,7 @@ class BusinessesController < ApplicationController
     if @business.save
       redirect_to dashboard_index_path, notice: 'Your business was added successfully.'
     else
-      redirect_to dashboard_index_path, notice: 'Your business was not added.'
+      redirect_to dashboard_index_path, alert: 'Your business was not added.'
     end
   end
 
@@ -33,7 +33,7 @@ class BusinessesController < ApplicationController
     if @business.update(business_params)
       redirect_to @business, notice: "Business updated successfully!"
     else
-      render :edit
+      render :edit, alert: "Something went wrong."
     end
   end
 

@@ -27,7 +27,7 @@ class BookingsController < ApplicationController
       session[:cart_id] = nil
       redirect_to root_path, notice: "Booking was successfully created."
     else
-      render :new, status: :unprocessable_entity, notice: "Something went wrong."
+      render :new, status: :unprocessable_entity, alert: "Something went wrong."
     end
   end
   # rubocop:enable Metrics/MethodLength
