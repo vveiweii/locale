@@ -9,6 +9,13 @@
             <%= link_to "Edit Profile", "#", remote: true, data: { bs_toggle: "modal", bs_target: "#editProfileModal" }, class: "btn btn-success" %>
             <%= render 'edit_profile' %>
           </div>
+          <div class="mb-3">
+          <% if @user.photo.attached? %>
+            <%= cl_image_tag @user.photo.key, height: 150, width: 150, crop: :fill, class: "avatar-profile" %>
+          <% else %>
+            <%= cl_image_tag("default_avatar_s0pgec", width: 150, height: 150, crop: :thumb, gravity: :face) %>
+          <% end %>
+          </div>
           <span><strong>Name:</strong></span>
           <p><%= current_user.name %></p>
           <span><strong>Email:</strong></span>

@@ -16,5 +16,12 @@
         <%# <%= link_to "View Details", booking_path(booking), class: "btn btn-primary" %>
       </div>
     </div>
+        <% if booking.start_date < Date.today %>
+      <%= link_to "Add Review", new_user_booking_review_path(current_user, booking), class: "btn btn-primary" %>
+    <% else %>
+      <p>You are not able to add a review yet</p>
+    <% end %>
+  </div>
   <% end %>
+
 </div>

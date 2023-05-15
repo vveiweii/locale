@@ -1,20 +1,21 @@
 class ReviewsController < ApplicationController
   def new
     @review = Review.new
+    @booking = Booking.find(params["booking_id"])
   end
 
   def create
-    @list = List.find(params[:list_id])
-    @review = @list.reviews.new(review_params)
+    @review = Review.new(review_params)
+    @review.user = current_user
+    @review.booking_id = params["booking_id"]
     if @review.save
-      redirect_to list_path(@list)
+      redirect_to dashboard_index_path, notice: "Review created successfully"
     else
-      render "show"
+      redirect_to dashboard_index_path, notice: "Review not created"
     end
   end
 
   def destroy
-    @list = List.find(params[:list_id])
     @review = @list.reviews.find(params[:id])
     @review.destroy
     redirect_to list_path(@list)
