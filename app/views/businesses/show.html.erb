@@ -23,30 +23,32 @@
   </ol>
 </nav>
 
+
+
 <%# PICTURES %>
-<div class="container">
+<div>
   <div class="row">
-
-    <div class="col-8 my-5">
-      <%# main business image %>
-    </div>
-
-    <div class="col-4 my-5">
-      <div class="row row-cols-1">
-
-        <div class="col">
-        <%# second business image %>
-        </div>
-
-        <div class="col">
-        <%# third business image %>
-        </div>
-
+    <% if @business.photos.attached? %>
+      <div class="col-md-8">
+        <%= cl_image_tag @business.photos.first.key, height: 300, width: 400, crop: :fill %>
       </div>
-    </div>
-
+      <div class="col-md-4">
+        <% @business.photos[1..2].each do |photo| %>
+          <%= cl_image_tag photo.key, height: 150, width: 200, crop: :fill %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="col-md-8">
+        <%= image_tag "business-placeholder.jpg", height: 300, width: 400, crop: :fill %>
+      </div>
+      <div class="col-md-4">
+        <% 2.times do %>
+          <%= image_tag "business-placeholder.jpg", height: 150, width: 200, crop: :fill %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
-  <button type="button" class="btn btn-light btn-sm">See all images</button>
+  <button type="button" class="btn btn-outline-light btn-sm">See all images</button>
 </div>
 
 <%# Offers %>
