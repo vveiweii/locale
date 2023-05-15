@@ -13,7 +13,8 @@
           <% if @user.photo.attached? %>
             <%= cl_image_tag @user.photo.key, height: 150, width: 150, crop: :fill, class: "avatar-profile" %>
           <% else %>
-            <%= cl_image_tag("default_avatar_s0pgec", width: 150, height: 150, crop: :thumb, gravity: :face) %>
+            <%= image_tag "photo-placeholder.jpg", height: 150, width: 150, crop: :fill, class: "avatar-profile" %>
+            <%# <%= cl_image_tag("default_avatar_s0pgec", width: 150, height: 150, crop: :thumb, gravity: :face) %>
           <% end %>
           </div>
           <span><strong>Name:</strong></span>
@@ -48,6 +49,22 @@
     </div>
 
     <div class="col-7">
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <h4>My Businesses</h4>
+            <%= link_to "Add a Business", "#", remote: true, data: { bs_toggle: "modal", bs_target: "#newBusinessModal" }, class: "btn btn-success" %>
+            <%= render 'new_business' %>
+          </div>
+          <p> Make your Business available for Booking </p>
+          <hr>
+          <div class="d-flex justify-content-start">
+            <% @businesses.each do |business| %>
+              <%= render "business_card", business: business %>
+            <% end %>
+          </div>
+        </div>
+      </div>
       <div class="card mb-4">
         <div class="card-body">
           <h4>My payment Methods</h4>

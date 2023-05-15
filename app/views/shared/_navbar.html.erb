@@ -45,15 +45,16 @@
               <% if current_user.photo.attached? %>
                 <%= cl_image_tag current_user.photo.key, height: 25, width: 25, aspect_ratio: "1:1", crop: :fill, class: "avatar" %>
               <% else %>
-                <%= cl_image_tag("development/slg3qy5k2ajvju12ktnimzrw9vct.jpg", :aspect_ratio=>"1:1", :border=>"0px_solid_rgb:ffffff", :radius=>"max", :width=>25, :crop=>"thumb") %>
+                <%# <%= cl_image_tag("development/slg3qy5k2ajvju12ktnimzrw9vct.jpg", :aspect_ratio=>"1:1", :border=>"0px_solid_rgb:ffffff", :radius=>"max", :width=>25, :crop=>"thumb") %>
+                <img class="avatar dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="<%= asset_path('photo-placeholder.jpg') %>" />
               <% end %>
               Menu
             </button>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown dropdownMenuicon">
               <%= link_to "Hello #{current_user.name.split[0]} ", "#", class: "nav-link" %>
-              <%= link_to "Profile", dashboard_index_path, class: "dropdown-item" %>
+              <%= link_to "Dashboard", dashboard_index_path, class: "dropdown-item" %>
               <%= link_to "Bookings", bookings_path, class: "dropdown-item" %>
-              <%= link_to "Favourites", edit_user_registration_path, class: "dropdown-item" %>
+              <%= link_to "Favourites", root_path, class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </li>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_13_042853) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_13_065746) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,6 +48,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_13_042853) do
     t.datetime "end_date", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "business_id"
+    t.index ["business_id"], name: "index_bookings_on_business_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
@@ -123,6 +125,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_13_042853) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bookings", "businesses"
   add_foreign_key "bookings", "users"
   add_foreign_key "businesses", "users"
   add_foreign_key "reviews", "bookings"
