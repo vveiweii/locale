@@ -2,7 +2,7 @@ class BookingsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @bookings = current_user.bookings.all
+    @bookings = current_user.bookings.all.order(created_at: :desc)
     @cart = @current_cart
   end
 
@@ -15,19 +15,22 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.user_id = current_user.id
-    @current_cart.line_items.each do |item|
-      @booking.line_items << item
-      item.update(cart_id: nil)
-      # item.cart_id = nil
-      # item.save
+    if @current_cart.line_items.first.present?
+      service = @current_cart.line_items.first.service
+      @booking.business_id = service.business_id
     end
-
     if @booking.save
+      @current_cart.line_items.each do |item|
+        @booking.line_items << item
+        item.update(cart_id: nil)
+        # item.cart_id = nil
+        # item.save
+      end
       Cart.destroy(session[:cart_id])
       session[:cart_id] = nil
       redirect_to root_path, notice: "Booking was successfully created."
     else
-      render :new, status: :unprocessable_entity, alert: "Something went wrong."
+      render :new, status: :unprocessable_entity
     end
   end
   # rubocop:enable Metrics/MethodLength
@@ -45,6 +48,6 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:start_date, :user_id)
+    params.require(:booking).permit(:start_date, :user_id, :business_id)
   end
 end
