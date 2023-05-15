@@ -45,7 +45,8 @@
               <% if current_user.photo.attached? %>
                 <%= cl_image_tag current_user.photo.key, height: 25, width: 25, aspect_ratio: "1:1", crop: :fill, class: "avatar" %>
               <% else %>
-                <%= cl_image_tag("development/slg3qy5k2ajvju12ktnimzrw9vct.jpg", :aspect_ratio=>"1:1", :border=>"0px_solid_rgb:ffffff", :radius=>"max", :width=>25, :crop=>"thumb") %>
+                <%# <%= cl_image_tag("development/slg3qy5k2ajvju12ktnimzrw9vct.jpg", :aspect_ratio=>"1:1", :border=>"0px_solid_rgb:ffffff", :radius=>"max", :width=>25, :crop=>"thumb") %>
+                <img class="avatar dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="<%= asset_path('photo-placeholder.jpg') %>" />
               <% end %>
               Menu
             </button>

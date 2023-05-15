@@ -13,7 +13,8 @@
           <% if @user.photo.attached? %>
             <%= cl_image_tag @user.photo.key, height: 150, width: 150, crop: :fill, class: "avatar-profile" %>
           <% else %>
-            <%= cl_image_tag("default_avatar_s0pgec", width: 150, height: 150, crop: :thumb, gravity: :face) %>
+            <%= image_tag "photo-placeholder.jpg", height: 150, width: 150, crop: :fill, class: "avatar-profile" %>
+            <%# <%= cl_image_tag("default_avatar_s0pgec", width: 150, height: 150, crop: :thumb, gravity: :face) %>
           <% end %>
           </div>
           <span><strong>Name:</strong></span>
