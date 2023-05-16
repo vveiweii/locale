@@ -5,6 +5,8 @@ class LineItem < ApplicationRecord
   belongs_to :cart, optional: true
   belongs_to :booking, optional: true
 
+  validates :service_id, uniqueness: { scope: :cart_id, message: 'as already been added' }
+
   def total_price
     self.quantity * self.service.price
   end
