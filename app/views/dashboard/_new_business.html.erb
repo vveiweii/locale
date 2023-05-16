@@ -1,0 +1,26 @@
+<div class="modal fade" id="newBusinessModal" tabindex="-1" aria-labelledby="newBusinessModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <%= simple_form_for @business, url: user_businesses_path(current_user), method: :post do |f| %>
+        <div class="modal-header">
+          <h5 class="modal-title" id="newBusinessModalLabel">Add a Business</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+          <%= f.input :name, required: true %>
+          <%= f.input :description, required: true %>
+          <%= f.input :email, required: true %>
+          <%= f.input :address %>
+          <%= f.input :city %>
+          <%= f.input :state %>
+          <%= f.input :postcode %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <%= f.button :submit, "Save Details", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,76 +1,89 @@
-<div class="container">
-  <div class="row">
-
-    <div class="col-5">
-      <div class="card mb-4">
-        <div class="card-body">
-          <div class="d-flex justify-content-between">
-            <h3>User Profile</h3>
-            <%= link_to "Edit Profile", "#", remote: true, data: { bs_toggle: "modal", bs_target: "#editProfileModal" }, class: "btn btn-success" %>
-            <%= render 'edit_profile' %>
-          </div>
-          <div class="mb-3">
-          <% if @user.photo.attached? %>
-            <%= cl_image_tag @user.photo.key, height: 150, width: 150, crop: :fill, class: "avatar-profile" %>
-          <% else %>
-            <%= cl_image_tag("default_avatar_s0pgec", width: 150, height: 150, crop: :thumb, gravity: :face) %>
-          <% end %>
-          </div>
-          <span><strong>Name:</strong></span>
-          <p><%= current_user.name %></p>
-          <span><strong>Email:</strong></span>
-          <p><%= current_user.email %></p>
-          <span><strong>Address:</strong></span>
-          <p><%= current_user.address %></p>
-          <span><strong>City:</strong></span>
-          <p><%= current_user.city %></p>
-          <span><strong>State:</strong></span>
-          <p><%= current_user.state %></p>
-          <span><strong>Postcode:</strong></span>
-          <p><%= current_user.postcode %></p>
-          <span><strong>Date of Birth:</strong></span>
-          <% if current_user.date_of_birth.present? %>
-            <p><%= current_user.date_of_birth.strftime('%d %B %Y') %></p>
-          <% else %>
-            <p>No date of birth available</p>
-          <% end %>
+<div class="row">
+  <div class="col-5">
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <h3>User Profile</h3>
+          <%= link_to "Edit Profile", "#", remote: true, data: { bs_toggle: "modal", bs_target: "#editProfileModal" }, class: "btn btn-success" %>
+          <%= render 'edit_profile' %>
         </div>
+        <hr>
+        <div class="mb-3">
+        <% if @user.photo.attached? %>
+          <%= cl_image_tag @user.photo.key, height: 150, width: 150, crop: :fill, class: "avatar-profile" %>
+        <% else %>
+          <%= image_tag "photo-placeholder.jpg", height: 150, width: 150, crop: :fill, class: "avatar-profile" %>
+          <%# <%= cl_image_tag("default_avatar_s0pgec", width: 150, height: 150, crop: :thumb, gravity: :face) %>
+        <% end %>
+        </div>
+        <span><strong>Name:</strong></span>
+        <p><%= current_user.name %></p>
+        <span><strong>Email:</strong></span>
+        <p><%= current_user.email %></p>
+        <span><strong>Address:</strong></span>
+        <p><%= current_user.address %></p>
+        <span><strong>City:</strong></span>
+        <p><%= current_user.city %></p>
+        <span><strong>State:</strong></span>
+        <p><%= current_user.state %></p>
+        <span><strong>Postcode:</strong></span>
+        <p><%= current_user.postcode %></p>
+        <span><strong>Date of Birth:</strong></span>
+        <% if current_user.date_of_birth.present? %>
+          <p><%= current_user.date_of_birth.strftime('%d %B %Y') %></p>
+        <% else %>
+          <p>No date of birth available</p>
+        <% end %>
       </div>
-      <div class="card mb-4">
-        <div class="card-body">
-          <h4>My Bookings</h4>
-          <span>View your booking history</span>
-          <hr>
-          <%# render a partial with the past booking history %>
-          <p> No booking history </p>
+    </div>
+    <div class="card mb-4">
+      <div class="card-body">
+        <h4>My Bookings</h4>
+        <span>View your booking history</span>
+        <hr>
+        <%# render a partial with the past booking history %>
+        <p> No booking history </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-7">
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <h4>My Businesses</h4>
+          <%= link_to "Add a Business", "#", remote: true, data: { bs_toggle: "modal", bs_target: "#newBusinessModal" }, class: "btn btn-success" %>
+          <%= render 'new_business' %>
+        </div>
+        <p> Make your Business available for Booking </p>
+        <hr>
+        <div class="d-flex justify-content-start">
+          <% @businesses.each do |business| %>
+            <%= render "business_card", business: business %>
+          <% end %>
         </div>
       </div>
     </div>
-
-    <div class="col-7">
-      <div class="card mb-4">
-        <div class="card-body">
-          <h4>My payment Methods</h4>
-          <span> Securely save your payment methods</span>
-          <hr>
-          <%= render 'payments' %>
-        </div>
+    <div class="card mb-4">
+      <div class="card-body">
+        <h4>My payment Methods</h4>
+        <span> Securely save your payment methods</span>
+        <hr>
+        <%= render 'payments' %>
       </div>
-      <div class="card mb-4">
-        <div class="card-body">
-          <h4>Linked Accounts</h4>
-        </div>
-      </div>
-      <div class="card mb-4">
-        <div class="card-body">
-          <h4>Notifications</h4>
-          <span>We will send you updates and notifications</span>
-          <hr>
-          <%= render 'notifications' %>
-        </div>
-      </div>
-
     </div>
-
+    <div class="card mb-4">
+      <div class="card-body">
+        <h4>Linked Accounts</h4>
+      </div>
+    </div>
+    <div class="card mb-4">
+      <div class="card-body">
+        <h4>Notifications</h4>
+        <span>We will send you updates and notifications</span>
+        <hr>
+        <%= render 'notifications' %>
+      </div>
+    </div>
   </div>
 </div>

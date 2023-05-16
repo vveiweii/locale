@@ -1,91 +1,86 @@
-<div class="container my-3">
-
-  <nav style="--bs-breadcrumb-divider: ' • ';" aria-label="breadcrumb">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
-        <li class="breadcrumb-item"><%= @business.city %></li>
-        <li class="breadcrumb-item active" aria-current="page"><%= @business.name %></li>
-      </ol>
-    </nav>
-  </nav>
-
-  <h1><%= @business.name %></h1>
-
-  <nav style="--bs-breadcrumb-divider: ' • ';" aria-label="breadcrumb">
+<nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb">
+  <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item">review stars</li>
-      <li class="breadcrumb-item">review path</li>
-      <li class="breadcrumb-item"><%= if @business.available? then "Available for booking" end %></li>
-      <li class="breadcrumb-item"><%= @business.address %></li>
+      <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
       <li class="breadcrumb-item"><%= @business.city %></li>
-      <li class="breadcrumb-item"><%= @business.state %></li>
-      <li class="breadcrumb-item">Get Directions</li>
-      <%# FAVOURITE ICON %>
+      <li class="breadcrumb-item active" aria-current="page"><%= @business.name %></li>
     </ol>
   </nav>
+</nav>
 
-  <%# PICTURES %>
-  <div class="container">
-    <div class="row">
+<h1><%= @business.name %></h1>
 
-      <div class="col-8 my-5">
-        <%# main business image %>
-      </div>
+<nav style="--bs-breadcrumb-divider: ' • ';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">review stars</li>
+    <li class="breadcrumb-item">review path</li>
+    <li class="breadcrumb-item"><%= @business.available? ? "Available for booking" : "Not Available for Booking" %></li>
+    <li class="breadcrumb-item"><%= @business.address %></li>
+    <li class="breadcrumb-item"><%= @business.city %></li>
+    <li class="breadcrumb-item"><%= @business.state %></li>
+    <li class="breadcrumb-item">Get Directions</li>
+  </ol>
+</nav>
 
-      <div class="col-4 my-5">
-        <div class="row row-cols-1">
-
-          <div class="col">
-          <%# second business image %>
-          </div>
-
-          <div class="col">
-          <%# third business image %>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-    <button type="button" class="btn btn-light btn-sm">See all images</button>
-  </div>
-
-  <%# Offers %>
-  <div class="col-12 my-5">
-    <h2>Offers</h2>
-    <div class="row mt-3">
-      <% @services.each do |service| %>
-        <% if service.offer > 0 %>
-          <div class="col-md-3">
-            <%= render "offer_card", service: service %>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-
-  <%# All Services %>
-  <div class="col-12 my-5">
-    <div class="col-8">
-      <h2>Services</h2>
-      <% @services.each do |service| %>
-        <%= render "service_card", service: service %>
-      <% end %>
-    </div>
-    <div class="col-4">
-      <%# <%= render "carts/show" %>
-    </div>
-  </div>
-
-  <%# About the business %>
-  <div class="container py-3">
-    <div class="row">
+<%# PICTURES %>
+<div>
+  <div class="row">
+    <% if @business.photos.attached? %>
       <div class="col-md-8">
-        <h2>About</h2>
-        <h5><%= @business.description %></h5>
+        <%= cl_image_tag @business.photos.first.key, height: 300, width: 400, crop: :fill %>
       </div>
+      <div class="col-md-4">
+        <% @business.photos[1..2].each do |photo| %>
+          <%= cl_image_tag photo.key, height: 150, width: 200, crop: :fill %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="col-md-8">
+        <%= image_tag "business-placeholder.jpg", height: 300, width: 400, crop: :fill %>
+      </div>
+      <div class="col-md-4">
+        <% 2.times do %>
+          <%= image_tag "business-placeholder.jpg", height: 150, width: 200, crop: :fill %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <button type="button" class="btn btn-outline-light btn-sm">See all images</button>
+</div>
+
+<%# Offers %>
+<div class="col-12 my-5">
+  <h2>Offers</h2>
+  <div class="row mt-3">
+    <% @services.each do |service| %>
+      <% if service.offer > 0 %>
+        <div class="col-md-3">
+          <%= render "offer_card", service: service %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<%# All Services %>
+<div class="col-12 my-5">
+  <div class="col-8">
+    <h2>Services</h2>
+    <% @services.each do |service| %>
+      <%= render "service_card", service: service %>
+    <% end %>
+  </div>
+  <div class="col-4">
+    <%# <%= render "carts/show" %>
+  </div>
+</div>
+
+<%# About the business %>
+<div class="container py-3">
+  <div class="row">
+    <div class="col-md-8">
+      <h2>About</h2>
+      <h5><%= @business.description %></h5>
     </div>
   </div>
-
 </div>
