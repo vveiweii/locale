@@ -28,7 +28,7 @@
         <%# </li> %>
         <li class="nav-item">
           <%= link_to cart_path(@current_cart), class: "nav-link btn btn-outline-success rounded-pill" do %>
-            Cart (<%= @current_cart.line_items.sum(:quantity).to_i %>)
+            Booking (<%= @current_cart.line_items.sum(:quantity).to_i %>)
           <% end %>
         </li>
         <%# <li class="nav-item">

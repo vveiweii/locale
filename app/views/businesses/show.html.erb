@@ -14,16 +14,13 @@
   <ol class="breadcrumb">
     <li class="breadcrumb-item">review stars</li>
     <li class="breadcrumb-item">review path</li>
-    <li class="breadcrumb-item"><%= if @business.available? then "Available for booking" end %></li>
+    <li class="breadcrumb-item"><%= @business.available? ? "Available for booking" : "Not Available for Booking" %></li>
     <li class="breadcrumb-item"><%= @business.address %></li>
     <li class="breadcrumb-item"><%= @business.city %></li>
     <li class="breadcrumb-item"><%= @business.state %></li>
     <li class="breadcrumb-item">Get Directions</li>
-    <%# FAVOURITE ICON %>
   </ol>
 </nav>
-
-
 
 <%# PICTURES %>
 <div>
