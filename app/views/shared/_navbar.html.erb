@@ -23,9 +23,9 @@
 
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav mx-auto gap-2">
-        <li class="nav-item active">
+        <%# <li class="nav-item active">
           <%= link_to "Home", root_path, class: "nav-link" %>
-        </li>
+        <%# </li> %>
         <li class="nav-item">
           <%= link_to cart_path(@current_cart), class: "nav-link btn btn-outline-success rounded-pill" do %>
             Cart (<%= @current_cart.line_items.sum(:quantity).to_i %>)
@@ -48,7 +48,6 @@
                 <%# <%= cl_image_tag("development/slg3qy5k2ajvju12ktnimzrw9vct.jpg", :aspect_ratio=>"1:1", :border=>"0px_solid_rgb:ffffff", :radius=>"max", :width=>25, :crop=>"thumb") %>
                 <img class="avatar dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="<%= asset_path('photo-placeholder.jpg') %>" />
               <% end %>
-              Menu
             </button>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown dropdownMenuicon">
               <%= link_to "Hello #{current_user.name.split[0]} ", "#", class: "nav-link" %>
