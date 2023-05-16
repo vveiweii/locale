@@ -2,7 +2,7 @@ class Business < ApplicationRecord
   belongs_to :user
   has_many :services, dependent: :destroy
   has_many :bookings, dependent: :destroy
-  has_many :reviews, dependent: :destroy
+  #has_many :reviews, dependent: :destroy
   has_many_attached :photos
 
   validates :name, presence: true, length: { maximum: 50 }
