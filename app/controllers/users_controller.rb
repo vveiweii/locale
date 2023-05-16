@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to dashboard_index_path, notice: 'Your profile was successfully updated.'
     else
-      render dashboard_index_path, notice: 'Your profile was not updated.'
+      render dashboard_index_path, alert: 'Your profile was not updated.'
     end
   end
 

@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to dashboard_index_path, notice: "Review created successfully"
     else
-      redirect_to dashboard_index_path, notice: "Review not created"
+      redirect_to dashboard_index_path, alert: "Review not created"
     end
   end
 

@@ -1,3 +1,5 @@
+<% line_item = @cart.line_items.find_by(service_id: service.id) %>
+
 <div class="card mb-4 border rounded shadow-sm">
   <div class="card-body d-flex align-items-center">
     <div class="flex-grow-1">
@@ -5,8 +7,14 @@
       <p>AUD <%= service.price %></p>
     </div>
     <div>
-      <%= button_to line_items_path(service_id: service.id), class: "btn btn-success btn-sm" do %>
-        <i class="fa-solid fa-plus fa-lg"></i>
+      <% if @cart.service_ids.include?(service.id) %>
+        <%= button_to line_item_path(line_item), method: :delete, class: "btn btn-sm" do %>
+          <i class="fa-regular fa-trash-can" style="color: #7d7d7d;"></i>
+        <% end %>
+      <% else %>
+        <%= button_to line_items_path(service_id: service.id), class: "btn btn-outline-success btn-sm" do %>
+          <i class="fa-solid fa-plus fa-lg"></i>
+        <% end %>
       <% end %>
     </div>
   </div>

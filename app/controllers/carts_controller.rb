@@ -3,6 +3,11 @@ class CartsController < ApplicationController
 
   def show
     @cart = @current_cart
+    if @cart.services.first.present?
+      @business = Business.find(@cart.services.first.business_id)
+    else
+      @business = nil
+    end
   end
 
   def destroy
