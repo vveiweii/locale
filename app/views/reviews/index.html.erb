@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="row">
+    <% @reviews.each do |review| %>
+      <div class="col-md-4">
+        <%= render partial: 'shared/review_card', locals: { review: review } %>
+      </div>
+    <% end %>
+  </div>
+</div>
