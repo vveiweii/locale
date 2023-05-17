@@ -5,8 +5,8 @@
       <%= link_to "Locale", root_path, class: "navbar-brand" %>
     </div>
     <% if controller_name != "pages" && action_name != "home" %>
-      <div class="form-inline">
-       <%=  form_with url: businesses_path, method: :get, class: "d-flex" do %>
+      <div class="form-inline search-sec-nav">
+       <%=  form_with url: businesses_path, method: :get, class: "d-flex gap-3" do %>
           <%= text_field_tag :query,
                 params[:query],
                 class: "form-control search-slt",
