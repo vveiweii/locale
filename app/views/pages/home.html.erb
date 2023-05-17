@@ -48,3 +48,16 @@
     </div>
   </div>
 </div>
+
+<div class="container my-5">
+ <div class="col-12">
+    <h2>Newest Reviews</h2>
+    <div class="row mt-3">
+      <% @new_reviews.each do |review| %>
+        <div class="col-md-3">
+          <%= render "reviews/review_card", reviews: review %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
