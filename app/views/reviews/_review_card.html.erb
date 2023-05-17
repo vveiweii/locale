@@ -1,18 +1,22 @@
 <div class="card mb-4 border rounded shadow-sm">
   <div class="card-body">
-    <div>
-      <p><b><%= review.rating %></b></p>
+    <div class="py-3">
+      <% review.rating.times do %>
+          <p style="display: inline-block;"><i class="fa-solid fa-star fa-2xl" style="color: #ffea00;"></i></p>
+      <% end %>
+    </div>
+    <div class="row mb-3">
       <p class="small"><%= review.description %></p>
     </div>
     <div class="row">
-      <div class="col-6">
+      <div class="col-4">
         <% if review.user.photo.attached? %>
           <%= cl_image_tag review.user.photo.key, class: "rounded-circle", crop: :fill, width: 50, height: 50 %>
         <% else %>
           <%= image_tag "photo-placeholder.jpg", class: "rounded-circle", crop: :fill, width: 50, height: 50 %>
         <% end %>
       </div>
-      <div class="col-6">
+      <div class="col-8">
         <b><span class="small"><%= review.user.name.split(" ").first %></span></b>
         <p class="small"><%= review.user.city %>, <%=review.user.state%></p>
       </div>
