@@ -14,7 +14,7 @@
         <% business.description.split(' ')
                     .map { |word| word.gsub(/[^a-zA-Z0-9\s]/, '').strip }
                     .each do |word| %>
-          <span class="badge"><%= word %></span>
+          <span class="badge custom-badge"><%= word %></span>
         <% end %>
       </div>
   </div>
