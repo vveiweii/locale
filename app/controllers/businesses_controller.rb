@@ -27,6 +27,7 @@ class BusinessesController < ApplicationController
     @business = Business.find(params[:id])
     @services = @business.services
     @cart = @current_cart
+    @reviews = Review.joins(:booking).where(bookings: { business_id: @business.id })
   end
 
   def update
