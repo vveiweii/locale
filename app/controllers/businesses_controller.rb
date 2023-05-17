@@ -28,6 +28,7 @@ class BusinessesController < ApplicationController
     @services = @business.services
     @cart = @current_cart
     @reviews = Review.joins(:booking).where(bookings: { business_id: @business.id })
+    @reviews_average_rating = @reviews.average(:rating)
   end
 
   def update

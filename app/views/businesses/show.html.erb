@@ -12,8 +12,12 @@
 
 <nav style="--bs-breadcrumb-divider: ' • ';" aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item">review stars</li>
-    <li class="breadcrumb-item">review path</li>
+    <li class="breadcrumb-item">
+      <%= @reviews_average_rating %>
+      <% @reviews_average_rating.to_i.times do %>
+        <p style="display: inline-block;"><i class="fa-solid fa-star fa-md" style="color: #ffea00;"></i></p>
+      <% end %>
+    </li>
     <li class="breadcrumb-item"><%= @business.available? ? "Available for booking" : "Not Available for Booking" %></li>
     <li class="breadcrumb-item"><%= @business.address %></li>
     <li class="breadcrumb-item"><%= @business.city %></li>
