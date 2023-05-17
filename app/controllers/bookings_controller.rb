@@ -4,6 +4,7 @@ class BookingsController < ApplicationController
   def index
     @bookings = current_user.bookings.all.order(created_at: :desc)
     @cart = @current_cart
+    @review = Review.new
   end
 
   def new
