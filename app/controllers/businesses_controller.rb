@@ -43,6 +43,10 @@ class BusinessesController < ApplicationController
     redirect_to @user, notice: "Business deleted successfully!"
   end
 
+  def full_address
+    [address, city, state].compact.join(', ')
+  end
+
   private
 
   def business_params
