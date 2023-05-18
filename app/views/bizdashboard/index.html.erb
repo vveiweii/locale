@@ -39,9 +39,9 @@
         </div>
         <p> List your services for booking </p>
         <hr>
-        <div class="d-flex justify-content-start">
+        <div class="col-8">
           <% @services.each do |service| %>
-            <%# <%= render "service_card", service: service %>
+            <%= render "service_card", service: service %>
           <% end %>
         </div>
       </div>
