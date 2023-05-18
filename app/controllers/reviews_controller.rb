@@ -9,16 +9,10 @@ class ReviewsController < ApplicationController
     @review.user = current_user
     @review.booking_id = params["booking_id"]
     if @review.save
-      redirect_to dashboard_index_path, notice: "Review created successfully"
+      redirect_to bookings_path, notice: "Review created successfully"
     else
-      redirect_to dashboard_index_path, alert: "Review not created"
+      redirect_to bookings_path, alert: "Review not created"
     end
-  end
-
-  def destroy
-    @review = @list.reviews.find(params[:id])
-    @review.destroy
-    redirect_to list_path(@list)
   end
 
   private

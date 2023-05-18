@@ -1,9 +1,0 @@
-<h1>New Review</h1>
-
-<%= simple_form_for @review, url: user_booking_reviews_path(current_user, @booking) do |f| %>
-  <%= f.error_notification %>
-  <%= f.input :description, as: :text, input_html: { rows: 4 } %>
-  <%= f.input :rating, collection: 1..5, prompt: "Select a rating" %>
-
-  <%= f.button :submit, class: "btn btn-primary" %>
-<% end %>

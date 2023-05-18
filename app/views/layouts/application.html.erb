@@ -15,11 +15,11 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body>
+  <body class="bg-landing-page">
     <%= render "shared/navbar" %>
     <div class="container py-5">
+    <%= render "shared/flashes" %>
       <%= yield %>
     </div>
-    <%= render "shared/flashes" %>
   </body>
 </html>

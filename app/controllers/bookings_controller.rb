@@ -4,6 +4,7 @@ class BookingsController < ApplicationController
   def index
     @bookings = current_user.bookings.all.order(created_at: :desc)
     @cart = @current_cart
+    @review = Review.new
   end
 
   def new
@@ -28,9 +29,9 @@ class BookingsController < ApplicationController
       end
       Cart.destroy(session[:cart_id])
       session[:cart_id] = nil
-      redirect_to root_path, notice: "Booking was successfully created."
+      redirect_to bookings_path, notice: "Booking was successfully created."
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity, alert: "Booking was not created."
     end
   end
   # rubocop:enable Metrics/MethodLength

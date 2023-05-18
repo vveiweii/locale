@@ -1,10 +1,15 @@
+.card {
+  overflow: hidden;
+}
+
 .card-link {
   text-decoration: none;
-  color: inherit;
+  color: rgb(66, 65, 65);
 }
 
 .card-link:hover {
   border-color: lightgrey;
+  color: inherit;
 }
 
 .card-title {
@@ -16,7 +21,7 @@
 }
 
 .custom-badge {
-  background-color: rgb(67, 70, 66);
+  background-color: rgb(133, 2, 2);
   font-family: "Nunito Sans", sans-serif;
   font-weight: inherit;
 }

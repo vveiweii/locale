@@ -3,7 +3,7 @@ class BusinessesController < ApplicationController
 
   def index
     if params[:query].present?
-      @businesses = Business.global_search(params[:query])
+      @businesses = Business.global_search(params[:query]).where(available: 'yes')
     else
       @businesses = Business.all
     end
@@ -27,6 +27,9 @@ class BusinessesController < ApplicationController
     @business = Business.find(params[:id])
     @services = @business.services
     @cart = @current_cart
+    @reviews = Review.joins(:booking).where(bookings: { business_id: @business.id })
+    @reviews_average_rating = @reviews.average(:rating)
+    @line_item = @cart.line_items.find_by(service_id: params[:service_id])
   end
 
   def update
