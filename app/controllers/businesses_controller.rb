@@ -1,5 +1,6 @@
 class BusinessesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_business, only: %i[show edit update destroy]
 
   def index
     if params[:query].present?
@@ -24,7 +25,6 @@ class BusinessesController < ApplicationController
   end
 
   def show
-    @business = Business.find(params[:id])
     @services = @business.services
     @cart = @current_cart
     @reviews = Review.joins(:booking).where(bookings: { business_id: @business.id })
@@ -32,11 +32,14 @@ class BusinessesController < ApplicationController
     @line_item = @cart.line_items.find_by(service_id: params[:service_id])
   end
 
+  def edit
+  end
+
   def update
     if @business.update(business_params)
-      redirect_to @business, notice: "Business updated successfully!"
+      redirect_to request.referer, notice: "Business updated successfully!"
     else
-      render :edit, alert: "Something went wrong."
+      render request.referer, alert: "Something went wrong."
     end
   end
 
@@ -47,6 +50,10 @@ class BusinessesController < ApplicationController
   end
 
   private
+
+  def set_business
+    @business = Business.find(params[:id])
+  end
 
   def business_params
     params.require(:business).permit(
