@@ -12,3 +12,12 @@
 @import "pages/index";
 
 @import "bootstrap";
+
+.bg-landing-page {
+  background: linear-gradient(
+    to bottom,
+    #e9fcf2,
+    #fdffea,
+    #f5f5f5
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}

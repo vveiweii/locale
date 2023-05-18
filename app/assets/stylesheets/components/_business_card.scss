@@ -1,0 +1,9 @@
+.card-img {
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s;
+}
+
+.card-img:hover {
+  transform: scale(1.1);
+}

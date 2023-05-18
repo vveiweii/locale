@@ -1,0 +1,20 @@
+<div class="modal fade" id="newReviewModal" tabindex="-1" aria-labelledby="newReviewModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <%= simple_form_for @review, url: user_booking_reviews_path(current_user, booking), method: :post do |f| %>
+        <div class="modal-header">
+          <h5 class="modal-title" id="newReviewModalLabel">Add a Review</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <%= f.error_notification %>
+          <%= f.input :description, as: :text, input_html: { rows: 4, maxlength: 223 } %>
+          <%= f.input :rating, collection: 1..5, prompt: "Review Rating", as: :radio_buttons, item_wrapper_class: "form-check form-check-inline" %>
+        </div>
+        <div class="modal-footer">
+          <%= f.button :submit, "Save Review", class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

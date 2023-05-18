@@ -1,9 +1,14 @@
 <%= link_to business_path(business), class: "card-link" do %>
   <div class="card mb-4 border rounded shadow-sm">
+      <% if business.photos.attached? %>
+        <%= cl_image_tag business.photos.first.key, class: "card-img-top card-img", crop: :fill %>
+      <% else %>
+        <%= image_tag "business-placeholder.jpg", class: "card-img-top card-img", crop: :fill %>
+      <% end %>
       <div class="card-body">
         <div>
           <p><b><%= business.name %></b></p>
-          <span class="small"> 📍 <%= business.address %></span>
+          <span class="small"><%= business.address %></span>
           <p class="small"><%= business.city %> • <%= business.state %> • <b><%= business.postcode %></b></p>
         </div>
         <% business.description.split(' ')
