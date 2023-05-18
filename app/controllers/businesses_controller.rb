@@ -3,7 +3,7 @@ class BusinessesController < ApplicationController
 
   def index
     if params[:query].present?
-      @businesses = Business.global_search(params[:query])
+      @businesses = Business.global_search(params[:query]).where(available: 'yes')
     else
       @businesses = Business.all
     end

@@ -26,24 +26,24 @@
 </nav>
 
 <%# PICTURES %>
-<div>
+<div class="my-5">
   <div class="row">
     <% if @business.photos.attached? %>
-      <div class="col-md-8">
-        <%= cl_image_tag @business.photos.first.key, height: 300, width: 400, crop: :fill %>
+      <div class="col business-photo">
+        <%= cl_image_tag @business.photos.first.key, height:500, width: 600, crop: :fill %>
       </div>
-      <div class="col-md-4">
+      <div class="col business-photo">
         <% @business.photos[1..2].each do |photo| %>
-          <%= cl_image_tag photo.key, height: 150, width: 200, crop: :fill %>
+          <%= cl_image_tag photo.key, height: 250, width: 350, crop: :fill %>
         <% end %>
       </div>
     <% else %>
-      <div class="col-md-8">
-        <%= image_tag "business-placeholder.jpg", height: 300, width: 400, crop: :fill %>
+      <div class="col business-photo">
+        <%= image_tag "business-placeholder.jpg", height:500, width: 600, crop: :fill %>
       </div>
-      <div class="col-md-4">
+      <div class="col business-photo">
         <% 2.times do %>
-          <%= image_tag "business-placeholder.jpg", height: 150, width: 200, crop: :fill %>
+          <%= image_tag "business-placeholder.jpg", height: 250, width: 350, crop: :fill %>
         <% end %>
       </div>
     <% end %>
