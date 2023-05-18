@@ -5,7 +5,7 @@
         <div class="d-flex justify-content-between">
           <h3>Business Dashboard</h3>
           <%= link_to "Edit Business", "#", remote: true, data: { bs_toggle: "modal", bs_target: "#editBusinessModal" }, class: "btn btn-success" %>
-          <%# <%= render 'edit_business' %>
+          <%= render 'edit_business' %>
         </div>
         <hr>
         <span><strong>Name:</strong></span>
@@ -21,11 +21,10 @@
         <span><strong>Postcode:</strong></span>
         <p><%= @business.postcode %></p>
         <span><strong>Keywords:</strong></span>
-        <p><%= @business.description %></p>
+        <p>Field to be added to the model </p>
         <span><strong>Description:</strong></span>
-        <p>Text to be added</p>
-        <span><strong>Active Listing:</strong></span>
-        <p><%= @business.available %></p>
+        <p><%= @business.description %></p>
+        <span><strong>Active Listing:</strong> <%= @business.available %></span>
       </div>
     </div>
   </div>
