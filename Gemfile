@@ -82,5 +82,6 @@ end
 gem "devise"
 gem "pg_search"
 gem "cloudinary"
+gem "geocoder"
 
 gem 'bootstrap', '~> 5.1'
