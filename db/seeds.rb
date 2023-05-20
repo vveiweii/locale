@@ -42,7 +42,7 @@ User.all.sample(10).each do |user|
     state: 'VIC',
     postcode: postcodes.sample,
     description: Faker::Company.industry,
-    available: 'yes'
+    available: '1'
   )
 end
 puts "Businesses created"
@@ -55,7 +55,7 @@ Business.all.each do |business|
       price: Faker::Commerce.price(range: 50.0..300.0),
       offer: 0,
       description: Faker::Commerce.product_name,
-      available: 'yes'
+      available: '1'
     )
   end
   3.times do
