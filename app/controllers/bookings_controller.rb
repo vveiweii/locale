@@ -17,7 +17,7 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.user_id = current_user.id
-    if @current_cart.line_items.first.present?
+    if @current_cart.line_items.any?
       service = @current_cart.line_items.first.service
       @booking.business_id = service.business_id
     end
