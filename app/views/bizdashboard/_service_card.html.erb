@@ -1,0 +1,13 @@
+<div class="card border rounded shadow-sm">
+  <div class="card-body d-flex align-items-center">
+    <div class="flex-grow-1">
+      <h5><%= service.name %></h5>
+      <p>Price: AUD <%= service.price %> • Offer: AUD <%= service.offer %> </p>
+    </div>
+    <div>
+      <%= button_to business_service_path(@business, service), method: :delete, class: "btn btn-sm" do %>
+        <i class="fa-regular fa-trash-can" style="color: #7d7d7d;"></i>
+      <% end %>
+    </div>
+  </div>
+</div>

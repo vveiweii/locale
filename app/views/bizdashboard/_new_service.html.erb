@@ -1,0 +1,21 @@
+<div class="modal fade" id="newServiceModal" tabindex="-1" aria-labelledby="newServiceModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <%= simple_form_for @service, url: user_business_services_path(current_user, @business), method: :post do |f| %>
+        <div class="modal-header">
+          <h5 class="modal-title" id="newServiceModalLabel">Add a Service</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <%= f.input :name, required: true %>
+          <%= f.input :description, required: true %>
+          <%= f.input :price, required: true %>
+          <%= f.input :offer, required: true %>
+        </div>
+        <div class="modal-footer">
+          <%= f.button :submit, "Save Details", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

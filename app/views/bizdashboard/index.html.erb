@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col-5">
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <h3>Business Dashboard</h3>
+          <%= link_to "Edit Business", "#", remote: true, data: { bs_toggle: "modal", bs_target: "#editBusinessModal" }, class: "btn btn-success" %>
+          <%= render 'edit_business' %>
+        </div>
+        <hr>
+        <span><strong>Name:</strong></span>
+        <p><%= @business.name %></p>
+        <span><strong>Email:</strong></span>
+        <p><%= @business.email %></p>
+        <span><strong>Address:</strong></span>
+        <p><%= @business.address %></p>
+        <span><strong>City:</strong></span>
+        <p><%= @business.city %></p>
+        <span><strong>State:</strong></span>
+        <p><%= @business.state %></p>
+        <span><strong>Postcode:</strong></span>
+        <p><%= @business.postcode %></p>
+        <span><strong>Keywords:</strong></span>
+        <p>Field to be added to the model </p>
+        <span><strong>Description:</strong></span>
+        <p><%= @business.description %></p>
+        <span><strong>Active Listing:</strong> <%= @business.available %></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-7">
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <h4>My Services</h4>
+          <%= link_to "Add a Service", "#", remote: true, data: { bs_toggle: "modal", bs_target: "#newServiceModal" }, class: "btn btn-success" %>
+          <%= render 'new_service' %>
+        </div>
+        <p> List your services for booking </p>
+        <hr>
+        <div class="col-8">
+          <% @services.each do |service| %>
+            <%= render "service_card", service: service %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="card mb-4">
+      <div class="card-body">
+        <h4>Notifications</h4>
+        <span>We will send you updates and notifications</span>
+        <hr>
+        <%= render 'notifications' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 mb-3">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h3> Business Photos </h3>
+      </div>
+    </div>
+  </div>
+</div>
