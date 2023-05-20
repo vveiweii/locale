@@ -45,9 +45,14 @@ class BusinessesController < ApplicationController
         info_window_html: render_to_string(partial: "info_window", locals: { business: business })
       }
     end
+    raise
+    @markers = @business.geocode
+    # @markers[:lat] = @business.geocode[0]
+    # @markers[:lng] = @business.geocode[1]
   end
 
   def edit
+
   end
 
   def update
