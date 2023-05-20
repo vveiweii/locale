@@ -1,0 +1,31 @@
+<div class="modal fade" id="editBusinessModal" tabindex="-1" aria-labelledby="editBusinessModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <%= simple_form_for(@business, url: user_business_path(current_user, @business), method: :put) do |f| %>
+        <div class="modal-header">
+          <h5 class="modal-title" id="editBusinessModalLabel">Edit Business</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+          <%= f.input :name, required: true %>
+          <%= f.input :email, required: true %>
+          <%= f.input :address %>
+          <%= f.input :city %>
+          <%= f.input :state %>
+          <%= f.input :description %>
+          <div class="form-group">
+            <label class="form-check-label">Available</label>
+            <div class="form-check form-switch">
+              <%= f.check_box :available, class: "form-check-input", data: { on: "yes", off: "no" } %>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <%= f.button :submit, "Save Changes", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -3,7 +3,7 @@ class CartsController < ApplicationController
 
   def show
     @cart = @current_cart
-    if @cart.services.first.present?
+    if @cart.services.any?
       @business = Business.find(@cart.services.first.business_id)
     else
       @business = nil

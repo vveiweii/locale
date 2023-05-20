@@ -10,7 +10,11 @@
           <p><b>SERVICES BOOKED</b></p>
           <ul>
             <% booking.line_items.each do |item| %>
-              <li><b><%= item.service.name %>:</b> AUD <%= item.service.price %></li>
+              <% if item.service.offer.positive? %>
+                <li><b><%= item.service.name %>:</b> AUD <%= item.service.offer %></li>
+              <% else %>
+                <li><b><%= item.service.name %>:</b> AUD <%= item.service.price %></li>
+              <% end %>
             <% end %>
           </ul>
           <div class="d-flex gap-3">
