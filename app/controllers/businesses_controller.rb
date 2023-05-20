@@ -5,6 +5,14 @@ class BusinessesController < ApplicationController
   def index
     if params[:query].present?
       @businesses = Business.global_search(params[:query]).where(available: 'yes')
+
+      @markers = @businesses.geocoded.map do |business|
+        {
+          lat: business.latitude,
+          lng: business.longitude,
+          info_window_html: render_to_string(partial: "info_window", locals: { business: business })
+        }
+      end
     else
       @businesses = Business.all
     end
@@ -47,10 +55,6 @@ class BusinessesController < ApplicationController
     @user = current_user
     business.destroy
     redirect_to @user, notice: "Business deleted successfully!"
-  end
-
-  def full_address
-    [address, city, state].compact.join(', ')
   end
 
   private
