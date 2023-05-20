@@ -4,13 +4,22 @@ class Business < ApplicationRecord
   has_many :bookings, dependent: :destroy
   #has_many :reviews, dependent: :destroy
   has_many_attached :photos
-  geocoded_by :full_address
-  after_validation :geocode, if :will_save_change_to_address?
 
   validates :name, presence: true, length: { maximum: 50 }
   validates :email, presence: true, length: { maximum: 255 }
   validates :description, presence: true, length: { maximum: 500 }
   attribute :available, :string, default: 'yes'
+
+  geocoded_by :full_address, latitude: :lat, longitude: :lon
+  after_validation :geocode, if :address_changed?
+
+  def full_address
+    [address, city, state, "Australia"].compact.join(', ')
+  end
+
+  def address_changed?
+    address_changed? || city_changed? || postcode_changed? || state_changed?
+  end
 
   include PgSearch::Model
   pg_search_scope :global_search,
