@@ -10,6 +10,7 @@ class BookingsController < ApplicationController
   def new
     @booking = Booking.new
     @cart = @current_cart
+    @business = Business.find(@cart.services.first.business_id)
   end
 
   # rubocop:disable Metrics/MethodLength
