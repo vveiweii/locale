@@ -1,0 +1,24 @@
+.brand-font {
+font-family: "lobster";
+font-size: xx-large;
+}
+
+.rounded-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 12px;
+  border-radius: 30px;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.button-text {
+  margin-right: 8px;
+}
+
+.button-icons i {
+  font-size: 18px;
+  margin-left: 8px;
+}
