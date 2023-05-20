@@ -38,8 +38,8 @@ class BusinessesController < ApplicationController
     @reviews = Review.joins(:booking).where(bookings: { business_id: @business.id })
     @reviews_average_rating = @reviews.average(:rating)
     # @line_item = @cart.line_items.find_by(service_id: params[:service_id])
-
-    @markers = @business.geocoded
+    raise
+    @markers = @business.geocode
     # @markers[:lat] = @business.geocode[0]
     # @markers[:lng] = @business.geocode[1]
 
