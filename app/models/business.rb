@@ -9,7 +9,7 @@ class Business < ApplicationRecord
   validates :description, presence: true, length: { maximum: 500 }
 
   geocoded_by :full_address, latitude: :lat, longitude: :lon
-  after_validation :geocode, if :address_changed?
+  after_validation :geocode, if: :address_changed?
 
   def full_address
     [address, city, state, "Australia"].compact.join(', ')
