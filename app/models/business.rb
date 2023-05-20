@@ -8,15 +8,11 @@ class Business < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 }
   validates :description, presence: true, length: { maximum: 500 }
 
-  geocoded_by :full_address, latitude: :lat, longitude: :lon
-  after_validation :geocode, if :address_changed?
+  geocoded_by :full_address
+  after_validation :geocode, if: :will_save_change_to_address?
 
   def full_address
     [address, city, state, "Australia"].compact.join(', ')
-  end
-
-  def address_changed?
-    address_changed? || city_changed? || postcode_changed? || state_changed?
   end
 
   include PgSearch::Model
