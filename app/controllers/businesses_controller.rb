@@ -38,6 +38,13 @@ class BusinessesController < ApplicationController
     @reviews = Review.joins(:booking).where(bookings: { business_id: @business.id })
     @reviews_average_rating = @reviews.average(:rating)
     # @line_item = @cart.line_items.find_by(service_id: params[:service_id])
+    @markers = @busines.geocoded.map do |business|
+      {
+        lat: business.latitude,
+        lng: business.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { business: business })
+      }
+    end
   end
 
   def edit
