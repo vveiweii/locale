@@ -35,7 +35,7 @@ class BusinessesController < ApplicationController
     @services = @business.services
     @cart = @current_cart
     @reviews = Review.joins(:booking).where(bookings: { business_id: @business.id })
-    @reviews_average_rating = @reviews.average(:rating)
+    @reviews_average_rating = @reviews.any? ? @reviews.average(:rating) : "No reviews"
     @markers = [{
       lat: @business.latitude,
       lng: @business.longitude,
