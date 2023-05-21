@@ -1,20 +1,19 @@
 class BusinessesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_business, only: %i[show edit update destroy]
+  before_action :set_business, only: %i[show update destroy]
 
   def index
     if params[:query].present?
       @businesses = Business.global_search(params[:query]).where(available: 'yes')
-
-      @markers = @businesses.geocoded.map do |business|
-        {
-          lat: business.latitude,
-          lng: business.longitude,
-          info_window_html: render_to_string(partial: "info_window", locals: { business: business })
-        }
-      end
     else
       @businesses = Business.all
+    end
+    @markers = @businesses.map do |business|
+      {
+        lat: business.latitude,
+        lng: business.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { business: business })
+      }
     end
   end
 
@@ -36,17 +35,12 @@ class BusinessesController < ApplicationController
     @services = @business.services
     @cart = @current_cart
     @reviews = Review.joins(:booking).where(bookings: { business_id: @business.id })
-    @reviews_average_rating = @reviews.average(:rating)
-    # @line_item = @cart.line_items.find_by(service_id: params[:service_id])
-    raise
-    @markers = @business.geocode
-    # @markers[:lat] = @business.geocode[0]
-    # @markers[:lng] = @business.geocode[1]
-
-  end
-
-  def edit
-
+    @reviews_average_rating = @reviews.any? ? @reviews.average(:rating) : "No reviews"
+    @markers = [{
+      lat: @business.latitude,
+      lng: @business.longitude,
+      info_window_html: render_to_string(partial: "info_window", locals: { business: @business })
+    }]
   end
 
   def update

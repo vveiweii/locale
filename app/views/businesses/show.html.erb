@@ -21,7 +21,7 @@
     <li class="breadcrumb-item"><%= @business.available? ? "Available for booking" : "Not Available for Booking" %></li>
     <li class="breadcrumb-item"><%= @business.address %></li>
     <li class="breadcrumb-item"><%= @business.city %>, <%= @business.state %></li>
-    <li class="breadcrumb-item">Get Directions</li>
+    <li class="breadcrumb-item"><%= link_to "Get Directions", "https://www.google.com/maps/dir//#{@business.address},+#{@business.city},+#{@business.state}", target: :_blank %></li>
   </ol>
 </nav>
 
