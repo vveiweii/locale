@@ -1,13 +1,18 @@
 class BusinessesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: %i[index show]
   before_action :set_business, only: %i[show update destroy]
 
+  # rubocop:disable Metrics
   def index
+    # @user_location = request.location
     if params[:query].present?
-      @businesses = Business.global_search(params[:query]).where(available: 'yes')
+      @businesses = Business.global_search(params[:query])
+                            .where(available: 'yes')
+                            .near('Melbourne, Australia', 50)
     else
-      @businesses = Business.all
+      @businesses = Business.all.where(available: 'yes').near('Melbourne, Australia', 50)
     end
+
     @markers = @businesses.map do |business|
       {
         lat: business.latitude,
@@ -16,6 +21,7 @@ class BusinessesController < ApplicationController
       }
     end
   end
+  # rubocop:enable Metrics
 
   def new
     @business = Business.new
