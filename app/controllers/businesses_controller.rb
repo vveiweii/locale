@@ -76,7 +76,8 @@ class BusinessesController < ApplicationController
       :name, :email,
       :address, :city,
       :state, :postcode,
-      :available, :description,
+      :available, :industry,
+      :description,
       :user_id, photos: []
     )
   end

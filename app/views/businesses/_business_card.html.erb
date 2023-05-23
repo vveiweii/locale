@@ -11,11 +11,7 @@
           <span class="small"><%= business.address %></span>
           <p class="small"><%= business.city %> • <%= business.state %> • <b><%= business.postcode %></b></p>
         </div>
-        <% business.description.split(' ')
-                    .map { |word| word.gsub(/[^a-zA-Z0-9\s]/, '').strip }
-                    .each do |word| %>
-          <span class="badge custom-badge"><%= word %></span>
-        <% end %>
+          <span class="badge custom-badge"><%= business.industry %></span>
       </div>
   </div>
 <% end %>
