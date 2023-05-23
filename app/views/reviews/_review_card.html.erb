@@ -1,25 +1,28 @@
-<div class="card mb-4 border rounded shadow-sm">
-  <div class="card-body">
-    <div class="py-3">
-      <% review.rating.times do %>
-        <p style="display: inline-block;"><i class="fa-solid fa-star fa-xl" style="color: #dbbe00;"></i></p>
-      <% end %>
-    </div>
-    <div class="row mb-3">
-      <h4><%= review.title %></h4>
-    </div>
-    <div class="row">
-      <div class="col-4">
-        <% if review.user.photo.attached? %>
-          <%= cl_image_tag review.user.photo.key, class: "rounded-circle", crop: :fill, width: 50, height: 50 %>
-        <% else %>
-          <%= image_tag "photo-placeholder.jpg", class: "rounded-circle", crop: :fill, width: 50, height: 50 %>
+<%= link_to "#", remote: true, data: { bs_toggle: "modal", bs_target: "#reviewModal" }, class: "card-link" do %>
+  <div class="card mb-4 border rounded shadow-sm">
+    <div class="card-body">
+      <div class="py-3">
+        <% review.rating.times do %>
+          <p style="display: inline-block;"><i class="fa-solid fa-star fa-xl" style="color: #dbbe00;"></i></p>
         <% end %>
       </div>
-      <div class="col-8">
-        <b><span class="small"><%= review.user.name.split(" ").first %></span></b>
-        <p class="small"><%= review.user.city %>, <%=review.user.state%></p>
+      <div class="row mb-3">
+        <h4><%= review.title %></h4>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <% if review.user.photo.attached? %>
+            <%= cl_image_tag review.user.photo.key, class: "rounded-circle", crop: :fill, width: 50, height: 50 %>
+          <% else %>
+            <%= image_tag "photo-placeholder.jpg", class: "rounded-circle", crop: :fill, width: 50, height: 50 %>
+          <% end %>
+        </div>
+        <div class="col-8">
+          <b><span class="small"><%= review.user.name.split(" ").first %></span></b>
+          <p class="small"><%= review.user.city %>, <%=review.user.state%></p>
+        </div>
       </div>
     </div>
   </div>
-</div>
+<% end %>
+<%= render 'reviews/review_modal', review: review, business: business %>
