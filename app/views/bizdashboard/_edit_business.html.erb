@@ -18,7 +18,7 @@
           <div class="form-group">
             <label class="form-check-label">Available</label>
             <div class="form-check form-switch">
-              <%= f.check_box :available, class: "form-check-input", data: { on: "yes", off: "no" } %>
+              <%= f.check_box :available, class: "form-check-input", data: { on: "yes", off: "no" }, checked: @business.available == "yes" %>
             </div>
           </div>
         </div>
