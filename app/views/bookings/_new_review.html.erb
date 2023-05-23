@@ -8,6 +8,7 @@
         </div>
         <div class="modal-body">
           <%= f.error_notification %>
+          <%= f.input :title, as: :text, input_html: { rows: 1, maxlength: 33 } %>
           <%= f.input :description, as: :text, input_html: { rows: 4, maxlength: 223 } %>
           <%= f.input :rating, collection: 1..5, prompt: "Review Rating", as: :radio_buttons, item_wrapper_class: "form-check form-check-inline" %>
         </div>
