@@ -21,7 +21,6 @@ class BusinessesController < ApplicationController
       }
     end
   end
-  # rubocop:enable Metrics
 
   def new
     @business = Business.new
@@ -38,6 +37,8 @@ class BusinessesController < ApplicationController
   end
 
   def show
+    @user_location = request.location
+    @business_distance = @business.distance_to(@user_location)
     @services = @business.services
     @cart = @current_cart
     @reviews = Review.joins(:booking).where(bookings: { business_id: @business.id })
@@ -48,6 +49,7 @@ class BusinessesController < ApplicationController
       info_window_html: render_to_string(partial: "info_window", locals: { business: @business })
     }]
   end
+  # rubocop:enable Metrics
 
   def update
     if @business.update(business_params)

@@ -22,6 +22,10 @@
     <li class="breadcrumb-item"><%= @business.address %></li>
     <li class="breadcrumb-item"><%= @business.city %>, <%= @business.state %></li>
     <li class="breadcrumb-item"><%= link_to "Get Directions", "https://www.google.com/maps/dir//#{@business.address},+#{@business.city},+#{@business.state}", target: :_blank %></li>
+    <% if @business_distance.positive? %>
+      <li class="breadcrumb-item"><%= @business_distance %> from you</li>
+    <% end %>
+
   </ol>
 </nav>
 
