@@ -7,21 +7,18 @@ class Business < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50 }
   validates :email, presence: true, length: { maximum: 255 }
   validates :description, presence: true, length: { maximum: 500 }
+  validates :industry, presence: true, format: { with: /\A\w+\z/, message: "Should be a single word" }
 
   geocoded_by :full_address, latitude: :lat, longitude: :lon
-  after_validation :geocode, if: :address_changed?
+  after_validation :geocode, if :address_changed?
 
   def full_address
     [address, city, state, "Australia"].compact.join(', ')
   end
 
-  def address_changed?
-    address_changed? || city_changed? || postcode_changed? || state_changed?
-  end
-
   include PgSearch::Model
   pg_search_scope :global_search,
-    against: [:name, :description],
+    against: [:name, :description, :industry],
     associated_against: { services: %i[name description] },
     using: {
       tsearch: { prefix: true }

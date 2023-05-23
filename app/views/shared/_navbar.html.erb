@@ -12,7 +12,9 @@
                 class: "form-control search-slt",
                 placeholder: "Search for a service..."
           %>
-          <%= submit_tag "SEARCH", name: "", class: "btn btn-success wrn-btn" %>
+          <%= button_tag type: "Submit", class: "btn btn-success rounded-pill" do %>
+            <i class="fa-solid fa-magnifying-glass fa-lg" style="color: #474747;"></i>
+          <% end %>
         <% end %>
       </div>
     <% end %>

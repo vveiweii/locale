@@ -1,20 +1,24 @@
 class BusinessesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_business, only: %i[show edit update destroy]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :set_business, only: %i[show update destroy]
 
+  # rubocop:disable Metrics
   def index
+    # @user_location = request.location
     if params[:query].present?
-      @businesses = Business.global_search(params[:query]).where(available: 'yes')
-
-      @markers = @businesses.geocoded.map do |business|
-        {
-          lat: business.latitude,
-          lng: business.longitude,
-          info_window_html: render_to_string(partial: "info_window", locals: { business: business })
-        }
-      end
+      @businesses = Business.global_search(params[:query])
+                            .where(available: 'yes')
+                            .near('Melbourne, Australia', 50)
     else
-      @businesses = Business.all
+      @businesses = Business.all.where(available: 'yes').near('Melbourne, Australia', 50)
+    end
+
+    @markers = @businesses.map do |business|
+      {
+        lat: business.latitude,
+        lng: business.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { business: business })
+      }
     end
   end
 
@@ -33,15 +37,19 @@ class BusinessesController < ApplicationController
   end
 
   def show
+    @user_location = request.location
+    @business_distance = @business.distance_to(@user_location)
     @services = @business.services
     @cart = @current_cart
     @reviews = Review.joins(:booking).where(bookings: { business_id: @business.id })
-    @reviews_average_rating = @reviews.average(:rating)
-    # @line_item = @cart.line_items.find_by(service_id: params[:service_id])
+    @reviews_average_rating = @reviews.any? ? @reviews.average(:rating) : "No reviews"
+    @markers = [{
+      lat: @business.latitude,
+      lng: @business.longitude,
+      info_window_html: render_to_string(partial: "info_window", locals: { business: @business })
+    }]
   end
-
-  def edit
-  end
+  # rubocop:enable Metrics
 
   def update
     if @business.update(business_params)
@@ -68,7 +76,8 @@ class BusinessesController < ApplicationController
       :name, :email,
       :address, :city,
       :state, :postcode,
-      :available, :description,
+      :available, :industry,
+      :description,
       :user_id, photos: []
     )
   end
