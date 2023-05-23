@@ -7,7 +7,7 @@ class Business < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50 }
   validates :email, presence: true, length: { maximum: 255 }
   validates :description, presence: true, length: { maximum: 500 }
-  validates :industry, presence: true, format: { with: /\A\w+\z/, message: "Should be a single word" }
+  validates :industry, presence: true
 
   geocoded_by :full_address
   after_validation :geocode, if: :will_save_change_to_address?

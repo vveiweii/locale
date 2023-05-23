@@ -5,12 +5,16 @@ class BusinessesController < ApplicationController
   # rubocop:disable Metrics
   def index
     # @user_location = request.location
+    # if params[:query].present? && @user_location.present?
+    #   @businesses = Business.global_search(params[:query])
+    #                         .where(available: 'yes')
+    #                         .near(@user_location, 15)
     if params[:query].present?
       @businesses = Business.global_search(params[:query])
                             .where(available: 'yes')
-                            .near('Melbourne, Australia', 50)
+                            .near(params[:city], 15)
     else
-      @businesses = Business.all.where(available: 'yes').near('Melbourne, Australia', 50)
+      @businesses = Business.all.where(available: 'yes').near(params[:city], 30)
     end
 
     @markers = @businesses.map do |business|
