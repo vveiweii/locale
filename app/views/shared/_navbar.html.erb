@@ -10,8 +10,9 @@
           <%= text_field_tag :query,
                 params[:query],
                 class: "form-control search-slt",
-                placeholder: "Search for a service..."
+                placeholder: "find your service?"
           %>
+          <%= select_tag :city, options_for_select(['Melbourne', 'Sydney', 'Brisbane']), class: "form-control" %>
           <%= button_tag type: "Submit", class: "btn btn-success rounded-pill" do %>
             <i class="fa-solid fa-magnifying-glass fa-lg" style="color: #474747;"></i>
           <% end %>

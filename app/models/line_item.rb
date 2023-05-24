@@ -16,6 +16,6 @@ class LineItem < ApplicationRecord
   end
 
   def price_or_offer
-    self.service.offer.positive? ? number_to_currency(self.service.offer, unit: "AUD") : number_to_currency(self.service.price, unit: "AUD")
+    self.service.offer.positive? ? number_to_currency(self.service.offer, unit: "AUD ") : number_to_currency(self.service.price, unit: "AUD ")
   end
 end

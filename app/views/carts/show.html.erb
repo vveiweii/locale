@@ -29,8 +29,8 @@
   <% end %>
 
   <div class="mt-5">
-    <h4>Sub total: <%= number_to_currency(@cart.sub_total) %></h3>
-    <h5>GST: <%= number_to_currency(@cart.taxes) %></h3>
+    <h4>Sub total: <%= number_to_currency(@cart.sub_total, unit: "AUD ") %></h3>
+    <h5>GST: <%= number_to_currency(@cart.taxes, unit: "AUD ") %></h3>
   </div>
 
   <div class="mt-4">

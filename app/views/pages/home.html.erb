@@ -57,8 +57,9 @@
     <h2>Newest Reviews</h2>
     <div class="row mt-3">
       <% @new_reviews.each do |review| %>
+        <% business = Business.find_by(id: review.booking.business_id) %>
         <div class="col-md-3">
-          <%= render "reviews/review_card", review: review %>
+          <%= render "reviews/review_card", review: review, business: business %>
         </div>
       <% end %>
     </div>

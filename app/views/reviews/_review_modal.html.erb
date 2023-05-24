@@ -1,0 +1,34 @@
+<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editProfileModalLabel">Review • <%= business.name %></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="py-3">
+          <% review.rating.times do %>
+            <p style="display: inline-block;"><i class="fa-solid fa-star fa-xl" style="color: #dbbe00;"></i></p>
+          <% end %>
+        </div>
+        <div class="row mb-3">
+          <h4><%= review.title %></h4>
+          <p> <%= review.description %></p>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <% if review.user.photo.attached? %>
+              <%= cl_image_tag review.user.photo.key, class: "rounded-circle", crop: :fill, width: 50, height: 50 %>
+            <% else %>
+              <%= image_tag "photo-placeholder.jpg", class: "rounded-circle", crop: :fill, width: 50, height: 50 %>
+            <% end %>
+          </div>
+          <div class="col-8">
+            <b><span class="small"><%= review.user.name.split(" ").first %></span></b>
+            <p class="small"><%= review.user.city %>, <%=review.user.state%></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
