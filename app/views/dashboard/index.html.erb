@@ -48,9 +48,11 @@
         </div>
         <p> Make your Business available for Booking </p>
         <hr>
-        <div class="d-flex justify-content-start">
+        <div class="row">
           <% @businesses.each do |business| %>
-            <%= render "business_card", business: business %>
+            <div class="col-md-4">
+              <%= render "business_card", business: business %>
+            </div>
           <% end %>
         </div>
       </div>
