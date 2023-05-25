@@ -38,7 +38,9 @@
       </div>
       <div class="col business-photo">
         <% @business.photos[1..2].each do |photo| %>
-          <%= cl_image_tag photo.key, height: 250, width: 350, crop: :fill %>
+          <div class="mb-2">
+            <%= cl_image_tag photo.key, height: 245, width: 350, crop: :fill %>
+          </div>
         <% end %>
       </div>
     <% else %>
