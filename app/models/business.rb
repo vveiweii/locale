@@ -10,7 +10,7 @@ class Business < ApplicationRecord
   validates :industry, presence: true, format: { with: /\A\w+\z/, message: "Should be a single word" }
 
   geocoded_by :full_address, latitude: :lat, longitude: :lon
-  after_validation :geocode, if :address_changed?
+  after_validation :geocode, if: :address_changed?
 
   def full_address
     [address, city, state, "Australia"].compact.join(', ')
@@ -28,4 +28,3 @@ class Business < ApplicationRecord
     self[:available] = value == "1" ? "yes" : "no"
   end
 end
-# end
