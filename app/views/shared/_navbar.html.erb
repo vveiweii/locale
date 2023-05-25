@@ -20,23 +20,13 @@
       </div>
     <% end %>
 
-    <%# <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button> %>
-
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav mx-auto gap-2">
-        <%# <li class="nav-item active">
-          <%= link_to "Home", root_path, class: "nav-link" %>
-        <%# </li> %>
         <li class="nav-item">
           <%= link_to cart_path(@current_cart), class: "nav-link btn btn-outline-success rounded-pill" do %>
             Booking (<%= @current_cart.line_items.sum(:quantity).to_i %>)
           <% end %>
         </li>
-        <%# <li class="nav-item">
-          <a class="nav-link btn btn-outline-success rounded-pill" href="#">For your Business</a>
-          <%= link_to 'For Your Business', for_your_business_path %>
 
       <li class="nav-item">
       <%= link_to 'For Your Business', for_your_business_path, class: 'nav-link btn btn-outline-success rounded-pill' %>
@@ -48,7 +38,6 @@
               <% if current_user.photo.attached? %>
                 <%= cl_image_tag current_user.photo.key, height: 25, width: 25, aspect_ratio: "1:1", crop: :fill, class: "avatar" %>
               <% else %>
-                <%# <%= cl_image_tag("development/slg3qy5k2ajvju12ktnimzrw9vct.jpg", :aspect_ratio=>"1:1", :border=>"0px_solid_rgb:ffffff", :radius=>"max", :width=>25, :crop=>"thumb") %>
                 <img class="avatar dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="<%= asset_path('photo-placeholder.jpg') %>" />
               <% end %>
             </button>
@@ -56,11 +45,10 @@
               <%= link_to "Hello #{current_user.name.split[0]} ", "#", class: "nav-link" %>
               <%= link_to "Dashboard", dashboard_index_path, class: "dropdown-item" %>
               <% if current_user.bookings.exists? %>
-                <%= link_to "Bookings", bookings_path, class: "dropdown-item" %>
+                <%= link_to "My Bookings", bookings_path, class: "dropdown-item" %>
               <% else %>
-                <%= link_to "Bookings", bookings_path, class: "dropdown-item disabled" %>
+                <%= link_to "My Bookings", bookings_path, class: "dropdown-item disabled" %>
               <% end %>
-              <%= link_to "Favourites", root_path, class: "dropdown-item disabled" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </li>

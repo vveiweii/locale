@@ -1,20 +1,19 @@
-<div class="row" style="display: flex; justifiy-content: space-between;">
-    <%# <h3 class="mb-4">Search results</h3> %>
-    <div style="width: 35%; display: grid; overflow-y: scroll; height: 100vh;">
-        <% if @businesses.any? %>
-          <% @businesses.each do |business| %>
-            <div>
-              <%= render "businesses/business_card", business: business %>
-            </div>
-          <% end %>
-        <% else %>
-          <h5>Sorry, no businesses found.</h5>
+<div class="row" style="display: flex; justify-content: space-between;">
+  <h3 class="mb-4">Search results</h3>
+  <div style="width: 30%; display: grid; overflow-y: scroll; height: 100vh;">
+      <% if @businesses.any? %>
+        <% @businesses.each do |business| %>
+          <div>
+            <%= render "businesses/business_card", business: business %>
+          </div>
         <% end %>
-    </div>
-
-      <div  style="width: 65%; height: 100vh; position: sticky; top: 0; display: block;"
-            data-controller="map"
-            data-map-markers-value="<%= @markers.to_json %>"
-            data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-
+      <% else %>
+        <h5>Sorry, no businesses found.</h5>
+      <% end %>
+  </div>
+  <div  style="width: 70%; height: 100vh; position: sticky; top: 0; display: block;"
+        data-controller="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
 </div>
