@@ -25,7 +25,6 @@
     <% if @business_distance.positive? %>
       <li class="breadcrumb-item"><%= @business_distance %> from you</li>
     <% end %>
-
   </ol>
 </nav>
 
@@ -87,7 +86,7 @@
     <div class="row mt-3">
       <% @reviews.each do |review| %>
         <div class="col-md-3">
-          <%= render "reviews/review_card", review: review %>
+          <%= render "reviews/review_card", review: review, business: @business %>
         </div>
       <% end %>
     </div>
