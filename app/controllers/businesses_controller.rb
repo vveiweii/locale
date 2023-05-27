@@ -41,8 +41,6 @@ class BusinessesController < ApplicationController
   end
 
   def show
-    @user_location = request.location
-    @business_distance = @business.distance_to(@user_location)
     @services = @business.services
     @cart = @current_cart
     @reviews = Review.joins(:booking).where(bookings: { business_id: @business.id })
