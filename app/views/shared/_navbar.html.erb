@@ -10,7 +10,7 @@
           <%= text_field_tag :query,
                 params[:query],
                 class: "form-control search-slt",
-                placeholder: "find your service?"
+                placeholder: "Search..."
           %>
           <%= select_tag :city, options_for_select(['Melbourne', 'Sydney', 'Brisbane', 'Richmond']), class: "form-control" %>
           <%= button_tag type: "Submit", class: "btn btn-success rounded-pill" do %>
