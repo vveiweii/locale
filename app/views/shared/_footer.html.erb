@@ -87,17 +87,17 @@
             <a class="text-reset"><%= link_to "FAQ", root_path(anchor: "faq"), class: "nav-link" %></a>
           </p>
           <p>
-            <% if current_user.bookings.exists? %>
+            <% if user_signed_in? %>
               <%= link_to "My Bookings", bookings_path, class: "nav-link" %>
             <% else %>
-              <%= link_to "Login", new_user_session_path, class: "nav-link disabled" %>
+              <%= link_to "My Bookings", new_user_session_path, class: "nav-link" %>
             <% end %>
           </p>
           <p>
-            <% if current_user.bookings.exists? %>
+            <% if user_signed_in? %>
               <%= link_to "My Reviews", bookings_path, class: "nav-link" %>
             <% else %>
-              <%= link_to "Login", new_user_session_path, class: "nav-link disabled" %>
+              <%= link_to "My Reviews", new_user_session_path, class: "nav-link" %>
             <% end %>
           </p>
         </div>
