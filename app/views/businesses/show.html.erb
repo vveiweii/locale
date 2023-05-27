@@ -57,18 +57,20 @@
 </div>
 
 <%# Offers %>
-<div class="col-12 my-5">
-  <h2>Offers</h2>
-  <div class="row mt-3">
-    <% @services.each do |service| %>
-      <% if service.offer.positive? %>
-        <div class="col-md-3">
-          <%= render "offer_card", service: service %>
-        </div>
+<% if @business.city == current_user.city %>
+  <div class="col-12 my-5">
+    <h2>Offers</h2>
+    <div class="row mt-3">
+      <% @services.each do |service| %>
+        <% if service.offer.positive? %>
+          <div class="col-md-3">
+            <%= render "offer_card", service: service %>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
-</div>
+<% end %>
 
 <%# All Services %>
 <div class="col-12 my-5">
