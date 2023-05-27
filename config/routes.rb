@@ -35,4 +35,5 @@ Rails.application.routes.draw do
 
   get 'for-your-business', to: 'pages#for_your_business', as: 'for_your_business'
   get 'about_us', to: 'pages#about_us', as: 'about_us'
+  get 'terms_of_service', to: 'pages#terms_of_service', as: 'terms_of_service'
 end
